@@ -1,0 +1,322 @@
+:root {
+  --color-primary: #B97600;
+  --color-primary-dark: #8a5900;
+  --color-text: #212529;
+  --color-text-light: #6f6f6e;
+  --color-bg: #ffffff;
+  --color-bg-soft: #faf7f2;
+  --font-script: 'Parisienne', cursive;
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Rubik', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+.section-title {
+  font-family: var(--font-script);
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--color-text-light);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  font-size: 15px;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 13px 34px;
+  border-radius: 50px;
+  transition: all .2s ease;
+}
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--primary:hover { background: var(--color-primary-dark); }
+.btn--ghost { background: #6f6f6e; color: #fff; }
+.btn--ghost:hover { background: #555; }
+.btn--outline { background: transparent; color: var(--color-primary); border: 1px solid var(--color-primary); }
+.btn--outline:hover { background: var(--color-primary); color: #fff; }
+.btn--sm { padding: 11px 30px; font-size: 14px; }
+.btn--lg { padding: 15px 44px; font-size: 16px; }
+
+/* Loader inicial (corazón latiendo) */
+.loader {
+  position: fixed; inset: 0; z-index: 500;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease;
+}
+.loader.is-hidden { opacity: 0; pointer-events: none; }
+.loader__heart { animation: heartbeat 1.1s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.18); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.12); }
+}
+
+/* Pantalla de bienvenida */
+.music-modal {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 24px;
+  transition: opacity .5s ease;
+}
+.music-modal.is-hidden { opacity: 0; pointer-events: none; }
+.music-modal__box { max-width: 640px; }
+.music-modal__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5.5vw, 52px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+.music-modal__names {
+  font-family: var(--font-script);
+  font-size: clamp(40px, 6.5vw, 64px);
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.music-modal__text {
+  font-family: var(--font-heading);
+  color: #6f6f6e; margin-bottom: 32px;
+  font-size: clamp(16px, 2.5vw, 22px);
+}
+.music-modal__actions {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+}
+.btn--pill {
+  background: var(--color-primary); color: #fff;
+  border-radius: 50px;
+  padding: 16px 36px;
+  text-transform: none;
+  font-size: 16px; font-weight: 500;
+}
+.btn--pill:hover { background: var(--color-primary-dark); }
+
+/* Botón flotante de música */
+.music-fab {
+  position: fixed; top: 20px; right: 20px; z-index: 150;
+  width: 52px; height: 52px; border-radius: 50%;
+  border: none; cursor: pointer;
+  background: rgba(245, 235, 215, .85);
+  color: var(--color-primary);
+  font-size: 22px; line-height: 1;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  transition: transform .2s ease;
+}
+.music-fab:hover { transform: scale(1.08); }
+.music-fab.is-playing { animation: pulse 2s infinite; }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  50% { box-shadow: 0 0 0 10px rgba(185,118,0,.15); }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #2b2b2b, #4a4a4a);
+  background-image: url('../assets/img/portada.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff; text-align: center;
+}
+.hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,.35); }
+.hero__content {
+  position: relative; z-index: 1; padding: 24px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero__date {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  font-family: var(--font-body); font-weight: 500;
+  font-size: 28px; margin-bottom: 24px;
+}
+.hero__line { display: inline-block; width: 70px; height: 1px; background: rgba(255,255,255,.7); }
+.hero__names {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(16px, 4vw, 40px);
+  font-family: var(--font-script);
+  font-size: clamp(56px, 11vw, 110px);
+  font-weight: 500; line-height: 1;
+}
+.hero__amp {
+  display: flex; align-items: center; justify-content: center;
+  width: clamp(48px, 7vw, 72px); height: clamp(48px, 7vw, 72px);
+  border-radius: 50%;
+  background: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3.5vw, 36px);
+  flex-shrink: 0;
+}
+.hero__divider {
+  width: min(560px, 70vw); height: 1px;
+  background: rgba(255,255,255,.5);
+  margin: 28px auto 0;
+}
+.hero__quote { max-width: 700px; margin: 32px auto 0; text-align: center; }
+.hero__quote p {
+  font-family: var(--font-heading);
+  font-size: 30px; font-weight: 500; line-height: 35px;
+  color: #fff; text-align: center;
+}
+.hero__quotemark {
+  display: block; height: 40px; overflow: visible;
+  font-family: Georgia, serif;
+  font-size: 100px; line-height: 40px;
+  color: rgba(255,255,255,.65);
+  text-align: center;
+  margin: 0 auto 16px;
+}
+.hero__quotemark--end { margin: 24px auto 0; line-height: 78px; }
+.hero__scroll { display: inline-block; margin-top: 40px; color: #fff; font-size: 32px; line-height: .5; text-decoration: none; animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(10px);} }
+
+/* Countdown */
+.countdown { background: #fff; padding: 56px 24px 64px; text-align: center; }
+.countdown__label { font-family: var(--font-script); font-size: 44px; color: var(--color-primary); margin-bottom: 24px; }
+.countdown__grid { display: flex; justify-content: center; }
+.countdown__item { min-width: 100px; padding: 0 12px; }
+.countdown__item + .countdown__item { border-left: 1px solid #d9d9d9; }
+.countdown__item span { display: block; font-size: 52px; font-weight: 300; color: #6f6f6e; font-family: var(--font-body); line-height: 1.1; }
+.countdown__item small { text-transform: uppercase; font-size: 13px; color: #9a9a9a; letter-spacing: 1px; }
+
+/* Invitados */
+.invitados { padding: 72px 24px; text-align: center; }
+.invitados__badge {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--color-primary); color: #fff;
+  font-family: var(--font-heading); font-size: 26px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.invitados__title {
+  font-family: var(--font-heading); font-size: 38px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8a7350; margin-bottom: 8px;
+}
+.invitados__acompanantes { color: var(--color-text-light); font-size: 14px; margin-bottom: 24px; }
+.invitados__list {
+  list-style: none; margin-bottom: 28px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.invitados__list li {
+  font-family: var(--font-heading); font-size: 17px;
+  background: #f1f1f1; padding: 9px 22px; border-radius: 4px;
+}
+.invitados__msg { color: var(--color-text); font-size: 16px; }
+
+/* Detalles (Ceremonia & Fiesta) */
+.detalles { background: #fff; padding: 72px 24px; }
+.detalles__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 980px; margin: 0 auto; }
+.detalle { text-align: center; }
+.detalle__icon { margin: 0 auto 8px; display: block; }
+.detalle__titlebox {
+  border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+  max-width: 300px; margin: 0 auto 28px; padding: 14px 0;
+}
+.detalle__titlebox h3 { font-family: var(--font-script); font-size: 40px; font-weight: 500; color: var(--color-primary); line-height: 1.1; }
+.detalle__label { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: #555; margin: 26px 0 6px; }
+.detalle__info { color: #a5a5a5; font-family: var(--font-heading); font-size: 16px; line-height: 1.5; margin-bottom: 16px; }
+
+/* RSVP */
+.rsvp { padding: 72px 24px; text-align: center; }
+
+/* Modal generic */
+.modal {
+  position: fixed; inset: 0; z-index: 300; display: none;
+  background: rgba(0,0,0,.6); align-items: center; justify-content: center; padding: 24px;
+}
+.modal.is-open { display: flex; }
+.modal__box {
+  background: #fff; max-width: 480px; width: 100%; max-height: 85vh; overflow-y: auto;
+  padding: 40px 32px; position: relative; text-align: left;
+}
+.modal__box h3 { font-family: var(--font-script); font-size: 32px; color: var(--color-primary); margin-bottom: 20px; text-align: center; }
+.modal__close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-light); }
+.modal__box form label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--color-text-light); margin: 16px 0 6px; }
+.modal__box form input, .modal__box form textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid #ddd; font-family: var(--font-body); font-size: 14px;
+}
+.radio-row { display: flex; gap: 20px; font-size: 14px; }
+.radio-row label { display: flex; align-items: center; gap: 6px; text-transform: none; font-size: 14px; margin: 0; }
+.modal__box .btn { width: 100%; margin-top: 24px; }
+.rsvp__thanks { display: none; text-align: center; color: var(--color-primary); margin-top: 16px; font-style: italic; }
+.rsvp__thanks.is-visible { display: block; }
+
+/* Galeria */
+.galeria { padding: 72px 24px; text-align: center; }
+.galeria__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; max-width: 900px; margin: 0 auto; }
+.galeria__item { aspect-ratio: 1; background-color: var(--color-bg-soft); background-size: cover; background-position: center; border: none; cursor: pointer; padding: 0; }
+
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 400;
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.lightbox.is-open { display: flex; }
+.lightbox img { max-height: 90vh; max-width: 90vw; }
+.lightbox__close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+
+/* Fiesta info */
+.fiesta-info { background: var(--color-bg-soft); padding: 72px 24px; }
+.fiesta-info__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.info-card { background: #fff; padding: 32px 24px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+.info-card h3 { font-family: var(--font-heading); font-size: 16px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.info-card p { color: var(--color-text-light); font-size: 13px; margin-bottom: 20px; min-height: 36px; }
+
+/* Regalos */
+.regalos { padding: 72px 24px; text-align: center; }
+
+/* Social */
+.social { background: var(--color-bg-soft); padding: 72px 24px; text-align: center; }
+.social__hashtag { font-family: var(--font-script); font-size: 32px; color: var(--color-primary); margin-bottom: 24px; }
+
+/* Footer */
+.footer { background: #2b2b2b; color: #fff; text-align: center; padding: 48px 24px; }
+.footer__names { font-family: var(--font-script); font-size: 32px; margin-bottom: 16px; }
+.footer__links { list-style: none; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.footer__links a { color: #ddd; text-decoration: none; font-family: var(--font-heading); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.footer__links a:hover { color: var(--color-primary); }
+.footer__credit { color: #888; font-size: 12px; }
+
+@media (max-width: 768px) {
+  .hero__names { flex-direction: column; gap: 12px; }
+  .hero__line { width: 40px; }
+  .hero__date { font-size: 20px; }
+  .hero__quote p { font-size: 20px; line-height: 26px; }
+  .hero__quotemark { font-size: 70px; height: 28px; line-height: 28px; }
+  .hero__quotemark--end { line-height: 55px; }
+  .detalles__grid { grid-template-columns: 1fr; }
+  .galeria__grid { grid-template-columns: repeat(2, 1fr); }
+  .fiesta-info__grid { grid-template-columns: 1fr; }
+}

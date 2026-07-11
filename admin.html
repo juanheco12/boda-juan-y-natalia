@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de la Boda | Juan &amp; Natalia</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Raleway:wght@400;500;600&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dorado: #B97600;
+  --dorado-oscuro: #8a5900;
+  --texto: #212529;
+  --gris: #6f6f6e;
+  --fondo: #faf7f2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Rubik', sans-serif; background: var(--fondo); color: var(--texto); min-height: 100vh; }
+
+.login {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.login__box {
+  background: #fff; padding: 48px 40px; max-width: 400px; width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08); border-radius: 8px; text-align: center;
+}
+.login__box h1 { font-family: 'Parisienne', cursive; color: var(--dorado); font-size: 40px; margin-bottom: 4px; }
+.login__box p { color: var(--gris); font-size: 14px; margin-bottom: 28px; }
+.login__box input {
+  width: 100%; padding: 12px 14px; margin-bottom: 14px;
+  border: 1px solid #ddd; border-radius: 6px; font-size: 15px; font-family: inherit;
+}
+.login__error { color: #c0392b; font-size: 13px; margin: 4px 0 10px; display: none; }
+
+.btn {
+  display: inline-block; border: none; cursor: pointer;
+  background: var(--dorado); color: #fff;
+  font-family: 'Raleway', sans-serif; font-weight: 500;
+  font-size: 15px; padding: 12px 32px; border-radius: 50px;
+  transition: background .2s;
+}
+.btn:hover { background: var(--dorado-oscuro); }
+.btn--sec { background: #999; font-size: 13px; padding: 9px 22px; }
+.btn--sec:hover { background: #777; }
+
+.panel { display: none; max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+.panel__head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+.panel__head h1 { font-family: 'Parisienne', cursive; color: var(--dorado); font-size: 42px; }
+.panel__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 36px; }
+.stat {
+  background: #fff; border-radius: 8px; padding: 22px 16px; text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,.05);
+}
+.stat__num { font-size: 38px; font-weight: 500; color: var(--dorado); line-height: 1.1; }
+.stat__label { font-family: 'Raleway', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); margin-top: 6px; }
+
+h2.seccion { font-family: 'Raleway', sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); margin: 36px 0 14px; }
+
+.tabla-wrap { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.05); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #f0ece4; vertical-align: top; }
+th { font-family: 'Raleway', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); background: #fdfbf7; }
+tr:last-child td { border-bottom: none; }
+.si { color: #1e8e3e; font-weight: 500; }
+.no { color: #c0392b; font-weight: 500; }
+.vacio { color: #bbb; text-align: center; padding: 28px !important; }
+td a { color: var(--dorado); }
+.aviso {
+  display: none; background: #fff3cd; border: 1px solid #ffe08a; color: #7a5c00;
+  padding: 14px 18px; border-radius: 8px; margin-bottom: 24px; font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="login" id="vistaLogin">
+  <div class="login__box">
+    <h1>Juan &amp; Natalia</h1>
+    <p>Panel privado de la boda</p>
+    <form id="formLogin">
+      <input type="email" id="loginEmail" placeholder="Correo" required autocomplete="username">
+      <input type="password" id="loginPass" placeholder="Contraseña" required autocomplete="current-password">
+      <p class="login__error" id="loginError">Correo o contraseña incorrectos</p>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div class="panel" id="vistaPanel">
+  <div class="panel__head">
+    <h1>Nuestra Boda</h1>
+    <div class="panel__actions">
+      <button class="btn btn--sec" id="btnActualizar">Actualizar</button>
+      <button class="btn btn--sec" id="btnExportar">Exportar CSV</button>
+      <button class="btn btn--sec" id="btnSalir">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat__num" id="stTotal">0</div><div class="stat__label">Respuestas</div></div>
+    <div class="stat"><div class="stat__num" id="stCeremonia">0</div><div class="stat__label">Van a ceremonia</div></div>
+    <div class="stat"><div class="stat__num" id="stFiesta">0</div><div class="stat__label">Van a fiesta</div></div>
+    <div class="stat"><div class="stat__num" id="stNo">0</div><div class="stat__label">No asisten</div></div>
+    <div class="stat"><div class="stat__num" id="stCanciones">0</div><div class="stat__label">Canciones</div></div>
+  </div>
+
+  <h2 class="seccion">Confirmaciones de asistencia</h2>
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Fecha</th><th>Nombre</th><th>Ceremonia</th><th>Fiesta</th><th>Restricciones</th><th>Mensaje</th></tr></thead>
+      <tbody id="tbodyConfirmaciones"><tr><td class="vacio" colspan="6">Sin datos todavía</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="seccion">Canciones sugeridas</h2>
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>Fecha</th><th>Nombre</th><th>Canción</th><th>Link</th></tr></thead>
+      <tbody id="tbodyCanciones"><tr><td class="vacio" colspan="4">Sin datos todavía</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="login" id="vistaSinConfig" style="display:none">
+  <div class="login__box">
+    <h1>Falta configurar</h1>
+    <p>Completa <strong>js/config.js</strong> con la URL y la clave anon de tu proyecto de Supabase (ver GUIA-PUBLICACION.md).</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

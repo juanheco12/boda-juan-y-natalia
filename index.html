@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Boda | Juan &amp; Natalia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Raleway:wght@400;500;600&family=Rubik:wght@300;400;500&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <svg class="loader__heart" viewBox="0 0 24 24" width="72" height="72" aria-hidden="true">
+    <path fill="#B97600" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+</div>
+
+<div class="music-modal" id="musicModal">
+  <div class="music-modal__box">
+    <h2 class="music-modal__title">Bienvenidos a la invitación de</h2>
+    <p class="music-modal__names">Juan &amp; Natalia</p>
+    <p class="music-modal__text">La música de fondo es parte de la experiencia</p>
+    <div class="music-modal__actions">
+      <button class="btn btn--pill" id="enterWithMusic">Ingresar con música</button>
+      <button class="btn btn--pill" id="enterWithoutMusic">Ingresar sin música</button>
+    </div>
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="assets/audio/cancion.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-fab" id="musicFab" aria-label="Activar o pausar música">♪</button>
+
+<section id="inicio" class="hero">
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__date"><span class="hero__line"></span>10.10.2026<span class="hero__line"></span></p>
+    <h1 class="hero__names">
+      <span class="hero__name">Juan</span>
+      <span class="hero__amp">&amp;</span>
+      <span class="hero__name">Natalia</span>
+    </h1>
+    <div class="hero__divider"></div>
+    <div class="hero__quote">
+      <span class="hero__quotemark">&ldquo;</span>
+      <p>Todos somos mortales,<br>hasta el primer beso y la segunda copa de vino</p>
+      <span class="hero__quotemark hero__quotemark--end">&rdquo;</span>
+    </div>
+    <a href="#countdown" class="hero__scroll">⌄</a>
+  </div>
+</section>
+
+<section class="countdown" id="countdown" data-wedding-date="2026-10-10T17:00:00">
+  <p class="countdown__label">Falta</p>
+  <div class="countdown__grid">
+    <div class="countdown__item"><span id="cd-days">00</span><small>días</small></div>
+    <div class="countdown__item"><span id="cd-hours">00</span><small>hs</small></div>
+    <div class="countdown__item"><span id="cd-min">00</span><small>min</small></div>
+    <div class="countdown__item"><span id="cd-sec">00</span><small>seg</small></div>
+  </div>
+</section>
+
+<section class="invitados">
+  <div class="invitados__badge">4</div>
+  <h2 class="invitados__title">Invitados</h2>
+  <p class="invitados__acompanantes">(1 acompañante)</p>
+  <ul class="invitados__list">
+    <li>Nombre Invitado 1</li>
+    <li>Nombre Invitado 2</li>
+    <li>Nombre Invitado 3</li>
+  </ul>
+  <p class="invitados__msg">Tu presencia es lo más importante. ¡No faltes!</p>
+</section>
+
+<section id="detalles" class="detalles">
+  <div class="detalles__grid">
+
+    <div class="detalle">
+      <svg class="detalle__icon" viewBox="0 0 64 64" width="80" height="80" fill="none" stroke="#B97600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="32" cy="40" r="15"/>
+        <path d="M32 25c-1.8-4.2-7.5-4-7.5.5 0 3.2 4.5 6.5 7.5 8.5 3-2 7.5-5.3 7.5-8.5 0-4.5-5.7-4.7-7.5-.5z"/>
+      </svg>
+      <div class="detalle__titlebox"><h3>Ceremonia</h3></div>
+      <h4 class="detalle__label">Día</h4>
+      <p class="detalle__info">Sábado 10 de Octubre - 17hs</p>
+      <button class="btn btn--primary btn--sm js-agendar"
+              data-title="Ceremonia Juan &amp; Natalia"
+              data-start="2026-10-10T17:00:00"
+              data-end="2026-10-10T18:00:00"
+              data-location="Nombre de la iglesia o lugar, Ciudad">Agendar</button>
+      <h4 class="detalle__label">Lugar</h4>
+      <p class="detalle__info">Nombre de la Iglesia / Lugar<br>Dirección completa - Ciudad</p>
+      <a class="btn btn--primary btn--sm" target="_blank"
+         href="https://www.google.com/maps/search/?api=1&query=Nombre+de+la+iglesia+Ciudad">¿Cómo llegar?</a>
+    </div>
+
+    <div class="detalle">
+      <svg class="detalle__icon" viewBox="0 0 64 64" width="80" height="80" fill="none" stroke="#B97600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 10h14l-2 14a5 6 0 0 1-10 0z"/>
+        <line x1="25" y1="30" x2="25" y2="46"/>
+        <line x1="19" y1="46" x2="31" y2="46"/>
+        <path d="M34 14h14l-2 14a5 6 0 0 1-10 0z" transform="rotate(12 41 26)"/>
+        <line x1="43" y1="34" x2="46" y2="50" transform="rotate(4 44 42)"/>
+        <line x1="40" y1="51" x2="52" y2="49"/>
+      </svg>
+      <div class="detalle__titlebox"><h3>Fiesta</h3></div>
+      <h4 class="detalle__label">Día</h4>
+      <p class="detalle__info">Sábado 10 de Octubre - 20hs</p>
+      <button class="btn btn--primary btn--sm js-agendar"
+              data-title="Fiesta Juan &amp; Natalia"
+              data-start="2026-10-10T20:00:00"
+              data-end="2026-10-11T02:00:00"
+              data-location="Nombre del salón, Ciudad">Agendar</button>
+      <h4 class="detalle__label">Lugar</h4>
+      <p class="detalle__info">Nombre del Salón de Fiestas<br>Dirección completa - Ciudad</p>
+      <a class="btn btn--primary btn--sm" target="_blank"
+         href="https://www.google.com/maps/search/?api=1&query=Nombre+del+salon+Ciudad">¿Cómo llegar?</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="rsvp" class="rsvp">
+  <h2 class="section-title">Confirmar Asistencia</h2>
+  <p class="section-sub">Es importante que confirmes tu asistencia</p>
+  <button class="btn btn--primary btn--lg" id="openRsvp">Confirmar asistencia</button>
+</section>
+
+<div class="modal" id="rsvpModal">
+  <div class="modal__box">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Confirmar Asistencia</h3>
+    <form id="rsvpForm">
+      <label>Nombre completo</label>
+      <input type="text" name="nombre" required>
+
+      <label>¿Asistes a la Ceremonia?</label>
+      <div class="radio-row">
+        <label><input type="radio" name="ceremonia" value="si" required> Sí, asistiré</label>
+        <label><input type="radio" name="ceremonia" value="no"> No asistiré</label>
+      </div>
+
+      <label>¿Asistes a la Fiesta?</label>
+      <div class="radio-row">
+        <label><input type="radio" name="fiesta" value="si" required> Sí, asistiré</label>
+        <label><input type="radio" name="fiesta" value="no"> No asistiré</label>
+      </div>
+
+      <label>Restricciones alimentarias</label>
+      <textarea name="restricciones" placeholder="Celíaco, vegano, vegetariano, etc."></textarea>
+
+      <label>Mensaje para los novios</label>
+      <textarea name="mensaje" placeholder="Déjanos un mensaje de cariño"></textarea>
+
+      <button type="submit" class="btn btn--primary btn--lg">Enviar confirmación</button>
+      <p class="rsvp__thanks" id="rsvpThanks">¡Gracias por confirmar! Nos vemos pronto. 💛</p>
+    </form>
+  </div>
+</div>
+
+<section id="galeria" class="galeria">
+  <h2 class="section-title">Retratos de Nuestro Amor</h2>
+  <p class="section-sub">Un minuto, un segundo, un instante que queda en la eternidad</p>
+  <div class="galeria__grid">
+    <button class="galeria__item js-lightbox" style="background-image:url('assets/img/galeria-1.jpg')"></button>
+    <button class="galeria__item js-lightbox" style="background-image:url('assets/img/galeria-2.jpg')"></button>
+    <button class="galeria__item js-lightbox" style="background-image:url('assets/img/galeria-3.jpg')"></button>
+    <button class="galeria__item js-lightbox" style="background-image:url('assets/img/galeria-4.jpg')"></button>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close js-close-lightbox">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<section id="fiesta-info" class="fiesta-info">
+  <h2 class="section-title">Fiesta</h2>
+  <p class="section-sub">Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.</p>
+  <div class="fiesta-info__grid">
+    <div class="info-card">
+      <h3>Música</h3>
+      <p>¿Cuál es la canción que no debe faltar en la playlist?</p>
+      <button class="btn btn--primary btn--sm" id="openCancion">Sugerir canción</button>
+    </div>
+    <div class="info-card">
+      <h3>Dress Code</h3>
+      <p>Una orientación para tu vestuario</p>
+      <button class="btn btn--outline btn--sm js-open-modal" data-modal="dressModal">Ver más</button>
+    </div>
+    <div class="info-card">
+      <h3>Tips y Notas</h3>
+      <p>Información adicional para tener en cuenta</p>
+      <button class="btn btn--outline btn--sm js-open-modal" data-modal="tipsModal">+ Info</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="cancionModal">
+  <div class="modal__box">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Sugerir Canción</h3>
+    <form id="cancionForm">
+      <label>Tu nombre</label>
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <label>Canción y autor</label>
+      <input type="text" name="cancion" placeholder="Nombre de canción y autor" required>
+      <label>Link (opcional)</label>
+      <input type="text" name="link" placeholder="Spotify, YouTube, etc.">
+      <button type="submit" class="btn btn--primary btn--lg">Sugerir canción</button>
+      <p class="rsvp__thanks" id="cancionThanks">¡Gracias por la sugerencia! 🎶</p>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="dressModal">
+  <div class="modal__box">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Dress Code</h3>
+    <p>Describe aquí el código de vestimenta para tu evento (ej: Formal / Elegante Sport). Evitar blanco (reservado para la novia).</p>
+  </div>
+</div>
+
+<div class="modal" id="tipsModal">
+  <div class="modal__box">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Tips y Notas</h3>
+    <p>Agrega aquí notas útiles: parking, clima, alojamiento recomendado, transporte, etc.</p>
+  </div>
+</div>
+
+<section id="regalos" class="regalos">
+  <h2 class="section-title">Regalos</h2>
+  <p class="section-sub">Si deseas regalarnos algo más que tu hermosa presencia...</p>
+  <button class="btn btn--primary" id="openRegalos">Cuenta Bancaria - Lista de Regalos</button>
+</section>
+
+<div class="modal" id="regalosModal">
+  <div class="modal__box">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Regalos</h3>
+    <p>Agrega aquí los datos de tu cuenta bancaria o el link a tu lista de regalos.</p>
+  </div>
+</div>
+
+<section class="social">
+  <h2 class="section-title">Compartimos este día junto a vos</h2>
+  <p class="section-sub">Compartí tus fotos y videos de ese hermoso día</p>
+  <p class="social__hashtag">#juanynatalia</p>
+  <a class="btn btn--primary" href="https://www.instagram.com/" target="_blank">Ver en Instagram</a>
+</section>
+
+<footer class="footer">
+  <p class="footer__names">Juan &amp; Natalia</p>
+  <ul class="footer__links">
+    <li><a href="#rsvp">Confirmar asistencia</a></li>
+    <li><a href="#fiesta-info">Sugerir canción</a></li>
+    <li><a href="#detalles">Ceremonia &amp; Fiesta</a></li>
+  </ul>
+  <p class="footer__credit">Hecho con 💛 para nuestra boda</p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
