@@ -274,6 +274,11 @@ img { max-width: 100%; display: block; }
 .rsvp__thanks { display: none; text-align: center; color: var(--color-primary); margin-top: 16px; font-style: italic; }
 .rsvp__thanks.is-visible { display: block; }
 
+/* Modal de mapa */
+.modal__box--mapa { max-width: 720px; padding: 32px; }
+.mapa-iframe { display: block; border-radius: 4px; }
+.mapa-ampliar { display: block; width: 100%; text-align: center; margin-top: 20px; }
+
 /* Galeria */
 .galeria { padding: 72px 24px; text-align: center; }
 .galeria__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; max-width: 900px; margin: 0 auto; }

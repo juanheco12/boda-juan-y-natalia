@@ -90,11 +90,10 @@
               data-title="Ceremonia Juan &amp; Natalia"
               data-start="2026-10-10T17:00:00"
               data-end="2026-10-10T18:00:00"
-              data-location="Nombre de la iglesia o lugar, Ciudad">Agendar</button>
+              data-location="8.761060,-75.890992">Agendar</button>
       <h4 class="detalle__label">Lugar</h4>
-      <p class="detalle__info">Nombre de la Iglesia / Lugar<br>Dirección completa - Ciudad</p>
-      <a class="btn btn--primary btn--sm" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Nombre+de+la+iglesia+Ciudad">¿Cómo llegar?</a>
+      <p class="detalle__info">Lugar de la Ceremonia</p>
+      <button class="btn btn--primary btn--sm js-open-modal" data-modal="mapaCeremoniaModal">¿Cómo llegar?</button>
     </div>
 
     <div class="detalle">
@@ -113,11 +112,10 @@
               data-title="Fiesta Juan &amp; Natalia"
               data-start="2026-10-10T20:00:00"
               data-end="2026-10-11T02:00:00"
-              data-location="Nombre del salón, Ciudad">Agendar</button>
+              data-location="8.67299851,-75.80539799">Agendar</button>
       <h4 class="detalle__label">Lugar</h4>
-      <p class="detalle__info">Nombre del Salón de Fiestas<br>Dirección completa - Ciudad</p>
-      <a class="btn btn--primary btn--sm" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Nombre+del+salon+Ciudad">¿Cómo llegar?</a>
+      <p class="detalle__info">Lugar de la Fiesta</p>
+      <button class="btn btn--primary btn--sm js-open-modal" data-modal="mapaFiestaModal">¿Cómo llegar?</button>
     </div>
 
   </div>
@@ -213,6 +211,30 @@
       <button type="submit" class="btn btn--primary btn--lg">Sugerir canción</button>
       <p class="rsvp__thanks" id="cancionThanks">¡Gracias por la sugerencia! 🎶</p>
     </form>
+  </div>
+</div>
+
+<div class="modal" id="mapaCeremoniaModal">
+  <div class="modal__box modal__box--mapa">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Cómo llegar a la Ceremonia</h3>
+    <iframe class="mapa-iframe" width="100%" height="400" style="border:0" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=8.761060,-75.890992&output=embed"></iframe>
+    <a class="btn btn--primary btn--sm mapa-ampliar" target="_blank"
+       href="https://www.google.com/maps/search/?api=1&query=8.761060,-75.890992">Ampliar mapa</a>
+  </div>
+</div>
+
+<div class="modal" id="mapaFiestaModal">
+  <div class="modal__box modal__box--mapa">
+    <button class="modal__close js-close-modal">&times;</button>
+    <h3>Cómo llegar a la Fiesta</h3>
+    <iframe class="mapa-iframe" width="100%" height="400" style="border:0" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=8.67299851,-75.80539799&output=embed"></iframe>
+    <a class="btn btn--primary btn--sm mapa-ampliar" target="_blank"
+       href="https://www.google.com/maps/search/?api=1&query=8.67299851,-75.80539799">Ampliar mapa</a>
   </div>
 </div>
 
