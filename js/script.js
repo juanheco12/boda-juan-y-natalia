@@ -128,13 +128,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('is-open'); });
 
-  document.querySelectorAll('.js-agendar').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const { title, start, end, location } = btn.dataset;
-      const fmt = d => d.replace(/[-:]/g, '').replace('.000', '');
-      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${fmt(start)}/${fmt(end)}&location=${encodeURIComponent(location)}`;
-      window.open(url, '_blank');
-    });
-  });
-
 });
