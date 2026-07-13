@@ -69,7 +69,6 @@ a.addeventatc {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
   background: var(--color-primary) !important;
   color: #fff !important;
   border: none !important;
@@ -83,9 +82,10 @@ a.addeventatc {
   text-transform: none !important;
   box-shadow: none !important;
   cursor: pointer;
+  z-index: 1 !important;
 }
 a.addeventatc:hover { background: var(--color-primary-dark) !important; }
-.addeventatc_icon { filter: brightness(0) invert(1) !important; }
+.addeventatc_icon { display: none !important; }
 
 /* Loader inicial (corazón latiendo) */
 .loader {
@@ -173,7 +173,7 @@ a.addeventatc:hover { background: var(--color-primary-dark) !important; }
   background: linear-gradient(160deg, #2b2b2b, #4a4a4a);
   background-image: url('../assets/img/portada.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 25%;
   color: #fff; text-align: center;
 }
 .hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,.35); }
