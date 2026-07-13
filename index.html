@@ -134,32 +134,56 @@
 </section>
 
 <div class="modal" id="rsvpModal">
-  <div class="modal__box">
+  <div class="modal__box modal__box--wizard">
     <button class="modal__close js-close-modal">&times;</button>
     <h3>Confirmar Asistencia</h3>
-    <form id="rsvpForm">
-      <label>Nombre completo</label>
-      <input type="text" name="nombre" required>
+    <form id="rsvpForm" novalidate>
+      <div class="wizard-pasos">
 
-      <label>¿Asistes a la Ceremonia?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="ceremonia" value="si" required> Sí, asistiré</label>
-        <label><input type="radio" name="ceremonia" value="no"> No asistiré</label>
+        <div class="wizard-paso is-activo" data-paso="1">
+          <label class="wizard-label">¿Quién está confirmando? <span class="wizard-required">*</span></label>
+          <div class="wizard-opciones" id="wizardInvitados"></div>
+          <button type="button" class="wizard-otro-btn" id="wizardOtroBtn">+ Escribir otro nombre</button>
+          <input type="text" class="wizard-input is-oculto" id="wizardNombreLibre" placeholder="Tu nombre completo">
+          <input type="hidden" name="nombre" id="wizardNombreHidden">
+        </div>
+
+        <div class="wizard-paso" data-paso="2">
+          <label class="wizard-label">¿Asistes a la Ceremonia? <span class="wizard-required">*</span></label>
+          <div class="wizard-opciones">
+            <label class="wizard-opcion"><input type="radio" name="ceremonia" value="si"><span>Sí, asistiré</span></label>
+            <label class="wizard-opcion wizard-opcion--no"><input type="radio" name="ceremonia" value="no"><span>No asistiré</span></label>
+          </div>
+        </div>
+
+        <div class="wizard-paso" data-paso="3">
+          <label class="wizard-label">¿Asistes a la Fiesta? <span class="wizard-required">*</span></label>
+          <div class="wizard-opciones">
+            <label class="wizard-opcion"><input type="radio" name="fiesta" value="si"><span>Sí, asistiré</span></label>
+            <label class="wizard-opcion wizard-opcion--no"><input type="radio" name="fiesta" value="no"><span>No asistiré</span></label>
+          </div>
+        </div>
+
+        <div class="wizard-paso" data-paso="4">
+          <label class="wizard-label">Restricciones alimentarias</label>
+          <textarea class="wizard-textarea" name="restricciones" placeholder="Celíaco, vegano, vegetariano, etc."></textarea>
+        </div>
+
+        <div class="wizard-paso" data-paso="5">
+          <label class="wizard-label">Mensaje para los novios</label>
+          <textarea class="wizard-textarea" name="mensaje" placeholder="Déjanos un mensaje de cariño"></textarea>
+        </div>
+
       </div>
 
-      <label>¿Asistes a la Fiesta?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="fiesta" value="si" required> Sí, asistiré</label>
-        <label><input type="radio" name="fiesta" value="no"> No asistiré</label>
+      <p class="wizard-error" id="wizardError"></p>
+
+      <div class="wizard-nav">
+        <button type="button" class="wizard-btn wizard-btn--anterior" id="wizardAnterior" style="display:none;">&larr; Anterior</button>
+        <button type="button" class="wizard-btn wizard-btn--siguiente" id="wizardSiguiente">Siguiente &rarr;</button>
+        <button type="submit" class="wizard-btn wizard-btn--enviar" id="wizardEnviar" style="display:none;">Enviar</button>
       </div>
 
-      <label>Restricciones alimentarias</label>
-      <textarea name="restricciones" placeholder="Celíaco, vegano, vegetariano, etc."></textarea>
-
-      <label>Mensaje para los novios</label>
-      <textarea name="mensaje" placeholder="Déjanos un mensaje de cariño"></textarea>
-
-      <button type="submit" class="btn btn--primary btn--lg">Enviar confirmación</button>
       <p class="rsvp__thanks" id="rsvpThanks">¡Gracias por confirmar! Nos vemos pronto. 💛</p>
     </form>
   </div>
@@ -186,16 +210,37 @@
   <p class="section-sub">Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.</p>
   <div class="fiesta-info__grid">
     <div class="info-card">
+      <svg class="info-card__icon info-card__icon--musica" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#B97600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle class="nota nota--1" cx="16" cy="46" r="7"/>
+        <circle class="nota nota--2" cx="42" cy="40" r="7"/>
+        <line x1="23" y1="46" x2="23" y2="14"/>
+        <line x1="49" y1="40" x2="49" y2="12"/>
+        <path d="M23 14l26-4v8l-26 4"/>
+      </svg>
       <h3>Música</h3>
       <p>¿Cuál es la canción que no debe faltar en la playlist?</p>
       <button class="btn btn--primary btn--sm" id="openCancion">Sugerir canción</button>
     </div>
     <div class="info-card">
+      <svg class="info-card__icon info-card__icon--dress" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#B97600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="32" cy="10" r="4"/>
+        <path d="M32 14v6"/>
+        <path class="percha" d="M12 26c0-6 8-9 20-9s20 3 20 9"/>
+        <path d="M32 20L8 38a4 4 0 0 0 2 7h44a4 4 0 0 0 2-7L32 20z"/>
+      </svg>
       <h3>Dress Code</h3>
       <p>Una orientación para tu vestuario</p>
       <button class="btn btn--outline btn--sm js-open-modal" data-modal="dressModal">Ver más</button>
     </div>
     <div class="info-card">
+      <svg class="info-card__icon info-card__icon--tips" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#B97600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="foco" d="M32 8a15 15 0 0 0-8 27.7c1.6 1.1 2.4 2.6 2.4 4.3v2h11.2v-2c0-1.7.8-3.2 2.4-4.3A15 15 0 0 0 32 8z"/>
+        <line x1="26" y1="48" x2="38" y2="48"/>
+        <line x1="27.5" y1="53" x2="36.5" y2="53"/>
+        <line class="rayo" x1="32" y1="1" x2="32" y2="5"/>
+        <line class="rayo" x1="10" y1="20" x2="13.5" y2="21.5"/>
+        <line class="rayo" x1="54" y1="20" x2="50.5" y2="21.5"/>
+      </svg>
       <h3>Tips y Notas</h3>
       <p>Información adicional para tener en cuenta</p>
       <button class="btn btn--outline btn--sm js-open-modal" data-modal="tipsModal">+ Info</button>
