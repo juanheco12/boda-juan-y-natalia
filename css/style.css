@@ -63,6 +63,30 @@ img { max-width: 100%; display: block; }
 .btn--sm { padding: 11px 30px; font-size: 14px; }
 .btn--lg { padding: 15px 44px; font-size: 16px; }
 
+/* El widget de AddEvent.com trae su propia hoja de estilos que carga
+   después y le gana por especificidad, así que forzamos el look dorado. */
+a.addeventatc {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 11px 30px !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  letter-spacing: .3px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+a.addeventatc:hover { background: var(--color-primary-dark) !important; }
+.addeventatc_icon { filter: brightness(0) invert(1) !important; }
+
 /* Loader inicial (corazón latiendo) */
 .loader {
   position: fixed; inset: 0; z-index: 500;
