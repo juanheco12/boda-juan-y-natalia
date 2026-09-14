@@ -92,10 +92,10 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Sobre de bienvenida con sello de cera (acuarela malva/rosa) */
+/* Sobre de bienvenida con sello de cera (champán/dorado + sello vino) */
 .env-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: #e4cad6;
+  background: #ece0c9;
   cursor: pointer; overflow: hidden;
   transition: opacity .5s ease;
 }
@@ -106,15 +106,15 @@ img { max-width: 100%; display: block; }
   perspective: 1400px;
 }
 
-/* Cuerpo del sobre: base acuarela con manchas suaves */
+/* Cuerpo del sobre: base papel champán con manchas suaves */
 .env-face {
   position: absolute; inset: 0;
   background:
-    radial-gradient(60% 45% at 28% 22%, rgba(247,236,240,.9) 0%, rgba(247,236,240,0) 60%),
-    radial-gradient(55% 40% at 78% 30%, rgba(214,180,200,.55) 0%, rgba(214,180,200,0) 60%),
-    radial-gradient(70% 50% at 70% 85%, rgba(201,167,189,.5) 0%, rgba(201,167,189,0) 60%),
-    radial-gradient(60% 45% at 18% 78%, rgba(238,214,224,.6) 0%, rgba(238,214,224,0) 60%),
-    linear-gradient(160deg, #efd8e1 0%, #e0bfd0 55%, #d3b0c6 100%);
+    radial-gradient(60% 45% at 28% 22%, rgba(251,245,231,.9) 0%, rgba(251,245,231,0) 60%),
+    radial-gradient(55% 40% at 78% 30%, rgba(226,203,152,.5) 0%, rgba(226,203,152,0) 60%),
+    radial-gradient(70% 50% at 70% 85%, rgba(211,184,125,.48) 0%, rgba(211,184,125,0) 60%),
+    radial-gradient(60% 45% at 18% 78%, rgba(242,231,206,.6) 0%, rgba(242,231,206,0) 60%),
+    linear-gradient(160deg, #f5ecd7 0%, #e8d5ab 55%, #dcc49a 100%);
 }
 .env-tri {
   position: absolute; inset: 0;
@@ -123,31 +123,31 @@ img { max-width: 100%; display: block; }
 /* Solapas laterales (al fondo) */
 .env-tri--left {
   clip-path: polygon(0 0, 0 100%, 50% 50%);
-  background: linear-gradient(90deg, rgba(233,205,219,.55) 0%, rgba(197,160,183,.55) 100%);
+  background: linear-gradient(90deg, rgba(238,224,190,.6) 0%, rgba(213,186,131,.6) 100%);
   z-index: 1;
-  filter: drop-shadow(2px 0 5px rgba(110,70,90,.2));
+  filter: drop-shadow(2px 0 5px rgba(120,90,30,.2));
 }
 .env-tri--right {
   clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  background: linear-gradient(270deg, rgba(233,205,219,.55) 0%, rgba(197,160,183,.55) 100%);
+  background: linear-gradient(270deg, rgba(238,224,190,.6) 0%, rgba(213,186,131,.6) 100%);
   z-index: 1;
-  filter: drop-shadow(-2px 0 5px rgba(110,70,90,.2));
+  filter: drop-shadow(-2px 0 5px rgba(120,90,30,.2));
 }
 /* Solapa inferior (sobre las laterales) */
 .env-tri--bottom {
   clip-path: polygon(0 100%, 100% 100%, 50% 47%);
-  background: linear-gradient(0deg, rgba(191,150,175,.5) 0%, rgba(238,216,226,.5) 100%);
+  background: linear-gradient(0deg, rgba(205,177,118,.55) 0%, rgba(242,232,208,.55) 100%);
   z-index: 2;
-  filter: drop-shadow(0 -3px 7px rgba(110,70,90,.22));
+  filter: drop-shadow(0 -3px 7px rgba(120,90,30,.22));
 }
 /* Solapa superior sellada (encima de todo) */
 .env-tri--top {
   clip-path: polygon(0 0, 100% 0, 50% 53%);
-  background: linear-gradient(180deg, #f4e6ec 0%, #e2c4d3 100%);
+  background: linear-gradient(180deg, #f8efd9 0%, #e5d0a1 100%);
   transform-origin: 50% 0;
   transition: transform .7s cubic-bezier(.6,0,.3,1);
   z-index: 4;
-  filter: drop-shadow(0 5px 12px rgba(110,70,90,.3));
+  filter: drop-shadow(0 5px 12px rgba(120,90,30,.3));
 }
 
 /* Nombres en la solapa superior */
@@ -155,27 +155,27 @@ img { max-width: 100%; display: block; }
   position: absolute; left: 0; right: 0; top: 12%;
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   font-family: var(--font-script);
-  color: var(--color-primary);
+  color: #7a2237;
   font-size: clamp(34px, 8vw, 52px);
   line-height: 1.1;
-  text-shadow: 0 1px 2px rgba(255,250,235,.5);
+  text-shadow: 0 1px 2px rgba(255,250,235,.6);
 }
 .env-amp { font-size: .7em; }
 
-/* Sello de cera dorado */
+/* Sello de cera vino */
 .env-seal {
   position: absolute; top: 50%; left: 50%;
   width: clamp(120px, 32vw, 160px); height: clamp(120px, 32vw, 160px);
   transform: translate(-50%, -50%);
   z-index: 5;
-  filter: drop-shadow(0 6px 12px rgba(90,60,15,.4));
+  filter: drop-shadow(0 6px 12px rgba(70,15,30,.45));
   transition: transform .5s ease, opacity .5s ease;
 }
 .env-seal__initials {
   font-family: var(--font-script);
   font-size: 46px;
-  fill: #6f4e16;
-  opacity: .8;
+  fill: #f4e3b0;
+  opacity: .95;
 }
 
 /* Texto de instrucción + botón */
@@ -186,7 +186,7 @@ img { max-width: 100%; display: block; }
 .env-hint__text {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  color: #566149;
+  color: #7a2237;
   font-size: clamp(17px, 4.6vw, 21px);
   margin-bottom: 16px;
 }
