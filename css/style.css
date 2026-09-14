@@ -92,10 +92,10 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Sobre de bienvenida con sello de cera (verde salvia) */
+/* Sobre de bienvenida con sello de cera (acuarela malva/rosa) */
 .env-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: #c3ccb6;
+  background: #e4cad6;
   cursor: pointer; overflow: hidden;
   transition: opacity .5s ease;
 }
@@ -106,8 +106,16 @@ img { max-width: 100%; display: block; }
   perspective: 1400px;
 }
 
-/* Cuerpo del sobre con sus 4 solapas triangulares */
-.env-face { position: absolute; inset: 0; background: #c3ccb6; }
+/* Cuerpo del sobre: base acuarela con manchas suaves */
+.env-face {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 45% at 28% 22%, rgba(247,236,240,.9) 0%, rgba(247,236,240,0) 60%),
+    radial-gradient(55% 40% at 78% 30%, rgba(214,180,200,.55) 0%, rgba(214,180,200,0) 60%),
+    radial-gradient(70% 50% at 70% 85%, rgba(201,167,189,.5) 0%, rgba(201,167,189,0) 60%),
+    radial-gradient(60% 45% at 18% 78%, rgba(238,214,224,.6) 0%, rgba(238,214,224,0) 60%),
+    linear-gradient(160deg, #efd8e1 0%, #e0bfd0 55%, #d3b0c6 100%);
+}
 .env-tri {
   position: absolute; inset: 0;
   backface-visibility: hidden;
@@ -115,31 +123,31 @@ img { max-width: 100%; display: block; }
 /* Solapas laterales (al fondo) */
 .env-tri--left {
   clip-path: polygon(0 0, 0 100%, 50% 50%);
-  background: linear-gradient(90deg, #cfd7c5 0%, #b4c0a4 100%);
+  background: linear-gradient(90deg, rgba(233,205,219,.55) 0%, rgba(197,160,183,.55) 100%);
   z-index: 1;
-  filter: drop-shadow(2px 0 5px rgba(70,85,55,.18));
+  filter: drop-shadow(2px 0 5px rgba(110,70,90,.2));
 }
 .env-tri--right {
   clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  background: linear-gradient(270deg, #cfd7c5 0%, #b4c0a4 100%);
+  background: linear-gradient(270deg, rgba(233,205,219,.55) 0%, rgba(197,160,183,.55) 100%);
   z-index: 1;
-  filter: drop-shadow(-2px 0 5px rgba(70,85,55,.18));
+  filter: drop-shadow(-2px 0 5px rgba(110,70,90,.2));
 }
 /* Solapa inferior (sobre las laterales) */
 .env-tri--bottom {
   clip-path: polygon(0 100%, 100% 100%, 50% 47%);
-  background: linear-gradient(0deg, #bcc7ac 0%, #d3dac8 100%);
+  background: linear-gradient(0deg, rgba(191,150,175,.5) 0%, rgba(238,216,226,.5) 100%);
   z-index: 2;
-  filter: drop-shadow(0 -3px 7px rgba(70,85,55,.2));
+  filter: drop-shadow(0 -3px 7px rgba(110,70,90,.22));
 }
 /* Solapa superior sellada (encima de todo) */
 .env-tri--top {
   clip-path: polygon(0 0, 100% 0, 50% 53%);
-  background: linear-gradient(180deg, #dbe1d0 0%, #c6d0b9 100%);
+  background: linear-gradient(180deg, #f4e6ec 0%, #e2c4d3 100%);
   transform-origin: 50% 0;
   transition: transform .7s cubic-bezier(.6,0,.3,1);
   z-index: 4;
-  filter: drop-shadow(0 5px 12px rgba(70,85,55,.28));
+  filter: drop-shadow(0 5px 12px rgba(110,70,90,.3));
 }
 
 /* Nombres en la solapa superior */
@@ -184,11 +192,13 @@ img { max-width: 100%; display: block; }
 }
 .env-btn {
   position: relative; display: inline-flex; align-items: center; gap: 9px;
-  padding: 14px 32px; border-radius: 50px;
+  padding: 15px 34px; border-radius: 50px;
   font-family: var(--font-heading); font-weight: 600; font-size: clamp(14px, 3.8vw, 16px);
-  letter-spacing: .4px; color: #fff;
-  background: linear-gradient(135deg, #d9ac48 0%, #B97600 55%, #9a6100 100%);
-  box-shadow: 0 8px 22px rgba(150,110,20,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  letter-spacing: .8px; text-transform: uppercase; color: #fff5e2;
+  background: linear-gradient(135deg, #e0b755 0%, #B97600 52%, #935d00 100%);
+  box-shadow: 0 9px 24px rgba(140,100,15,.45),
+              inset 0 0 0 1.5px rgba(255,244,222,.55),
+              inset 0 2px 3px rgba(255,255,255,.35);
   overflow: hidden;
   animation: envBtnFloat 2.6s ease-in-out infinite;
 }
@@ -196,13 +206,15 @@ img { max-width: 100%; display: block; }
 /* Destello que barre el botón */
 .env-btn::after {
   content: ""; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent);
   transform: skewX(-18deg);
-  animation: envBtnShine 2.8s ease-in-out infinite;
+  animation: envBtnShine 3s ease-in-out infinite;
 }
 @keyframes envBtnFloat {
-  0%, 100% { transform: translateY(0); box-shadow: 0 8px 22px rgba(150,110,20,.42), inset 0 1px 0 rgba(255,255,255,.35); }
-  50% { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(150,110,20,.5), inset 0 1px 0 rgba(255,255,255,.35); }
+  0%, 100% { transform: translateY(0);
+    box-shadow: 0 9px 24px rgba(140,100,15,.45), inset 0 0 0 1.5px rgba(255,244,222,.55), inset 0 2px 3px rgba(255,255,255,.35); }
+  50% { transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(140,100,15,.52), inset 0 0 0 1.5px rgba(255,244,222,.6), inset 0 2px 3px rgba(255,255,255,.35); }
 }
 @keyframes envBtnShine {
   0% { left: -60%; }
