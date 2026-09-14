@@ -23,15 +23,15 @@ function enviarDatos(tipo, formEl) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const bowIntro = document.getElementById('bowIntro');
-  function abrirMoño() {
-    if (bowIntro.classList.contains('is-opening')) return;
-    bowIntro.classList.add('is-opening');
-    setTimeout(() => bowIntro.classList.add('is-hidden'), 1300);
+  const envIntro = document.getElementById('envIntro');
+  function abrirSobre() {
+    if (envIntro.classList.contains('is-opening')) return;
+    envIntro.classList.add('is-opening');
+    setTimeout(() => envIntro.classList.add('is-hidden'), 1500);
   }
-  bowIntro.addEventListener('click', abrirMoño);
-  bowIntro.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirMoño(); }
+  envIntro.addEventListener('click', abrirSobre);
+  envIntro.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirSobre(); }
   });
 
   const musicModal = document.getElementById('musicModal');
