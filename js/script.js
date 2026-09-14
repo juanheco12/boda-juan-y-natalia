@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function abrirSobre() {
     if (envIntro.classList.contains('is-opening')) return;
     envIntro.classList.add('is-opening');
-    setTimeout(() => envIntro.classList.add('is-hidden'), 1500);
+    setTimeout(() => envIntro.classList.add('is-hidden'), 1850);
   }
   envIntro.addEventListener('click', abrirSobre);
   envIntro.addEventListener('keydown', e => {

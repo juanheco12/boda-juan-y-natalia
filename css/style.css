@@ -92,146 +92,149 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Sobre de bienvenida con sello de cera (champán/dorado + sello vino) */
+/* ===== Sobre de bienvenida (champán + sello vino) — se abre de verdad ===== */
 .env-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: #ece0c9;
+  background: radial-gradient(130% 100% at 50% 35%, #f6edda 0%, #ecdcbd 55%, #ddc59a 100%);
   cursor: pointer; overflow: hidden;
-  transition: opacity .5s ease;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity .6s ease;
 }
 .env-intro.is-hidden { opacity: 0; pointer-events: none; }
 
-.env-scene {
-  position: absolute; inset: 0;
-  perspective: 1400px;
+/* El sobre centrado */
+.env {
+  position: relative;
+  width: min(84vw, 360px);
+  aspect-ratio: 3 / 2;
+  perspective: 1300px;
+  filter: drop-shadow(0 22px 40px rgba(110,80,25,.3));
 }
 
-/* Cuerpo del sobre: base papel champán con manchas suaves */
-.env-face {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(60% 45% at 28% 22%, rgba(251,245,231,.9) 0%, rgba(251,245,231,0) 60%),
-    radial-gradient(55% 40% at 78% 30%, rgba(226,203,152,.5) 0%, rgba(226,203,152,0) 60%),
-    radial-gradient(70% 50% at 70% 85%, rgba(211,184,125,.48) 0%, rgba(211,184,125,0) 60%),
-    radial-gradient(60% 45% at 18% 78%, rgba(242,231,206,.6) 0%, rgba(242,231,206,0) 60%),
-    linear-gradient(160deg, #f5ecd7 0%, #e8d5ab 55%, #dcc49a 100%);
-}
-.env-tri {
-  position: absolute; inset: 0;
-  backface-visibility: hidden;
-}
-/* Solapas laterales (al fondo) */
-.env-tri--left {
-  clip-path: polygon(0 0, 0 100%, 50% 50%);
-  background: linear-gradient(90deg, rgba(238,224,190,.6) 0%, rgba(213,186,131,.6) 100%);
-  z-index: 1;
-  filter: drop-shadow(2px 0 5px rgba(120,90,30,.2));
-}
-.env-tri--right {
-  clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  background: linear-gradient(270deg, rgba(238,224,190,.6) 0%, rgba(213,186,131,.6) 100%);
-  z-index: 1;
-  filter: drop-shadow(-2px 0 5px rgba(120,90,30,.2));
-}
-/* Solapa inferior (sobre las laterales) */
-.env-tri--bottom {
-  clip-path: polygon(0 100%, 100% 100%, 50% 47%);
-  background: linear-gradient(0deg, rgba(205,177,118,.55) 0%, rgba(242,232,208,.55) 100%);
+/* Carta que sale del sobre */
+.env-letter {
+  position: absolute; left: 7%; right: 7%; top: 8%; height: 80%;
+  background: linear-gradient(160deg, #fdf8ec 0%, #f6ecd6 100%);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(120,90,30,.18);
   z-index: 2;
-  filter: drop-shadow(0 -3px 7px rgba(120,90,30,.22));
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  transition: transform 1s cubic-bezier(.5,0,.15,1);
 }
-/* Solapa superior sellada (encima de todo) */
-.env-tri--top {
-  clip-path: polygon(0 0, 100% 0, 50% 53%);
-  background: linear-gradient(180deg, #f8efd9 0%, #e5d0a1 100%);
-  transform-origin: 50% 0;
-  transition: transform .7s cubic-bezier(.6,0,.3,1);
-  z-index: 4;
-  filter: drop-shadow(0 5px 12px rgba(120,90,30,.3));
+.env-letter__deco {
+  width: 46px; height: 2px; margin-bottom: 4px;
+  background: linear-gradient(90deg, transparent, #c79a3f, transparent);
+}
+.env-letter__eyebrow {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  color: #b0863a; font-size: clamp(14px, 4vw, 18px);
+}
+.env-letter__names {
+  font-family: var(--font-script); color: #7a2237;
+  font-size: clamp(26px, 8vw, 40px); line-height: 1;
+}
+.env-letter__date {
+  font-family: var(--font-heading); letter-spacing: 3px;
+  color: #8a6d3a; font-size: clamp(11px, 3vw, 13px);
 }
 
-/* Nombres en la solapa superior */
-.env-names {
-  position: absolute; left: 0; right: 0; top: 12%;
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  font-family: var(--font-script);
-  color: #7a2237;
-  font-size: clamp(34px, 8vw, 52px);
-  line-height: 1.1;
+/* Parte trasera del sobre (interior visible al abrir) — mismo papel champán */
+.env-back {
+  position: absolute; inset: 0; z-index: 1;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #f3e6c6 0%, #e4cf9f 100%);
+}
+
+/* Solapas laterales — mismo champán, cubren las esquinas sobre la carta */
+.env-side {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(160deg, #f1e4c2 0%, #e3cd9c 100%);
+}
+.env-side--left  { clip-path: polygon(0 0, 0 100%, 52% 50%); }
+.env-side--right { clip-path: polygon(100% 0, 100% 100%, 48% 50%); }
+/* Sombra sutil del pliegue lateral */
+.env-side--left::after, .env-side--right::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 60%, rgba(120,90,30,.1) 100%);
+}
+.env-side--right::after { background: linear-gradient(270deg, transparent 60%, rgba(120,90,30,.1) 100%); }
+
+/* Frente / bolsillo del sobre — mismo color, definido por sombra */
+.env-front {
+  position: absolute; inset: 0; z-index: 3;
+  border-radius: 8px;
+  clip-path: polygon(0 42%, 50% 15%, 100% 42%, 100% 100%, 0 100%);
+  background: linear-gradient(160deg, #f3e6c6 0%, #e4cf9f 100%);
+}
+/* Sombra bajo el borde superior del bolsillo (el pico) */
+.env-front::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 45%;
+  clip-path: polygon(0 93%, 50% 33%, 100% 93%, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(120,90,30,.22), transparent 55%);
+}
+
+/* Solapa superior (con nombres) — mismo color, definida por sombra */
+.env-flap {
+  position: absolute; top: 0; left: 0; width: 100%; height: 62%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #f5e9cd 0%, #ecdcb2 100%);
+  transform-origin: 50% 0; transform: rotateX(0deg);
+  z-index: 4;
+  transition: transform .75s cubic-bezier(.5,0,.25,1);
+  filter: drop-shadow(0 4px 6px rgba(120,90,30,.2));
+}
+.env-flap__names {
+  position: absolute; left: 0; right: 0; top: 16%;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  font-family: var(--font-script); color: #7a2237;
+  font-size: clamp(24px, 6.6vw, 40px); line-height: 1.05;
   text-shadow: 0 1px 2px rgba(255,250,235,.6);
+  backface-visibility: hidden;
 }
 .env-amp { font-size: .7em; }
 
-/* Sello de cera vino */
+/* Sello de cera vino (en la punta de la solapa) */
 .env-seal {
-  position: absolute; top: 50%; left: 50%;
-  width: clamp(120px, 32vw, 160px); height: clamp(120px, 32vw, 160px);
+  position: absolute; top: 62%; left: 50%;
+  width: clamp(96px, 26vw, 122px); height: clamp(96px, 26vw, 122px);
   transform: translate(-50%, -50%);
   z-index: 5;
-  filter: drop-shadow(0 6px 12px rgba(70,15,30,.45));
-  transition: transform .5s ease, opacity .5s ease;
+  filter: drop-shadow(0 5px 10px rgba(70,15,30,.45));
+  transition: transform .45s ease, opacity .4s ease;
 }
 .env-seal__initials {
-  font-family: var(--font-script);
-  font-size: 46px;
-  fill: #f4e3b0;
-  opacity: .95;
+  font-family: var(--font-script); font-size: 46px; fill: #f4e3b0; opacity: .95;
 }
 
-/* Texto de instrucción + botón */
+/* Instrucción */
 .env-hint {
-  position: absolute; left: 0; right: 0; bottom: 9%;
-  text-align: center; z-index: 6;
+  position: absolute; bottom: 12%; left: 0; right: 0; text-align: center;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  color: #7a2237; font-size: clamp(16px, 4.4vw, 20px);
+  animation: envHintPulse 1.9s ease-in-out infinite;
 }
-.env-hint__text {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #7a2237;
-  font-size: clamp(17px, 4.6vw, 21px);
-  margin-bottom: 16px;
-}
-.env-btn {
-  position: relative; display: inline-flex; align-items: center; gap: 9px;
-  padding: 15px 34px; border-radius: 50px;
-  font-family: var(--font-heading); font-weight: 600; font-size: clamp(14px, 3.8vw, 16px);
-  letter-spacing: .8px; text-transform: uppercase; color: #fff5e2;
-  background: linear-gradient(135deg, #e0b755 0%, #B97600 52%, #935d00 100%);
-  box-shadow: 0 9px 24px rgba(140,100,15,.45),
-              inset 0 0 0 1.5px rgba(255,244,222,.55),
-              inset 0 2px 3px rgba(255,255,255,.35);
-  overflow: hidden;
-  animation: envBtnFloat 2.6s ease-in-out infinite;
-}
-.env-btn__icon { flex-shrink: 0; }
-/* Destello que barre el botón */
-.env-btn::after {
-  content: ""; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent);
-  transform: skewX(-18deg);
-  animation: envBtnShine 3s ease-in-out infinite;
-}
-@keyframes envBtnFloat {
-  0%, 100% { transform: translateY(0);
-    box-shadow: 0 9px 24px rgba(140,100,15,.45), inset 0 0 0 1.5px rgba(255,244,222,.55), inset 0 2px 3px rgba(255,255,255,.35); }
-  50% { transform: translateY(-4px);
-    box-shadow: 0 16px 30px rgba(140,100,15,.52), inset 0 0 0 1.5px rgba(255,244,222,.6), inset 0 2px 3px rgba(255,255,255,.35); }
-}
-@keyframes envBtnShine {
-  0% { left: -60%; }
-  55%, 100% { left: 130%; }
-}
+@keyframes envHintPulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
 
-/* Apertura: la solapa se abre y el sobre se desliza hacia arriba */
-.env-intro.is-opening .env-tri--top { transform: rotateX(-172deg); }
-.env-intro.is-opening .env-seal { transform: translate(-50%, -50%) scale(.4); opacity: 0; }
-.env-intro.is-opening .env-hint { opacity: 0; transition: opacity .3s ease; }
-.env-intro.is-opening .env-scene {
-  transform: translateY(-108%);
-  transition: transform .85s cubic-bezier(.7,0,.3,1) .45s;
+/* ===== Secuencia de apertura ===== */
+/* 1. El sello salta y se desvanece */
+.env-intro.is-opening .env-seal {
+  transform: translate(-50%, -50%) translateY(-16px) scale(.45); opacity: 0;
 }
+/* 2. La solapa se levanta (y pasa detrás de la carta) */
+.env-intro.is-opening .env-flap {
+  transform: rotateX(-170deg); z-index: 1;
+  transition: transform .75s cubic-bezier(.5,0,.25,1), z-index 0s linear .4s;
+}
+/* 3. La carta sale deslizándose hacia arriba */
+.env-intro.is-opening .env-letter {
+  transform: translateY(-64%);
+  transition: transform 1s cubic-bezier(.5,0,.15,1) .5s;
+}
+/* 4. La instrucción desaparece */
+.env-intro.is-opening .env-hint { opacity: 0; animation: none; transition: opacity .3s ease; }
 
 @media (prefers-reduced-motion: reduce) {
-  .env-btn, .env-btn::after { animation: none; }
+  .env-hint { animation: none; }
 }
 
 /* Pantalla de bienvenida */
