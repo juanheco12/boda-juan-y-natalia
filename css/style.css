@@ -92,10 +92,10 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Sobre de bienvenida con sello de cera */
+/* Sobre de bienvenida con sello de cera (verde salvia) */
 .env-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: radial-gradient(120% 100% at 50% 40%, #f7efdd 0%, #ecdcbd 60%, #ddc69c 100%);
+  background: #c3ccb6;
   cursor: pointer; overflow: hidden;
   transition: opacity .5s ease;
 }
@@ -107,33 +107,39 @@ img { max-width: 100%; display: block; }
 }
 
 /* Cuerpo del sobre con sus 4 solapas triangulares */
-.env-face { position: absolute; inset: 0; }
+.env-face { position: absolute; inset: 0; background: #c3ccb6; }
 .env-tri {
   position: absolute; inset: 0;
   backface-visibility: hidden;
 }
-.env-tri--top {
-  clip-path: polygon(0 0, 100% 0, 50% 52%);
-  background: linear-gradient(180deg, #f4ead2 0%, #e8d5ac 100%);
-  transform-origin: 50% 0;
-  transition: transform .7s cubic-bezier(.6,0,.3,1);
-  z-index: 4;
-  box-shadow: 0 2px 8px rgba(120,90,40,.12);
-}
-.env-tri--bottom {
-  clip-path: polygon(0 100%, 100% 100%, 50% 48%);
-  background: linear-gradient(0deg, #eaddbe 0%, #f1e4c8 100%);
-  z-index: 2;
-}
+/* Solapas laterales (al fondo) */
 .env-tri--left {
   clip-path: polygon(0 0, 0 100%, 50% 50%);
-  background: linear-gradient(90deg, #efe2c4 0%, #e6d4ab 100%);
+  background: linear-gradient(90deg, #cfd7c5 0%, #b4c0a4 100%);
   z-index: 1;
+  filter: drop-shadow(2px 0 5px rgba(70,85,55,.18));
 }
 .env-tri--right {
   clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  background: linear-gradient(270deg, #efe2c4 0%, #e6d4ab 100%);
+  background: linear-gradient(270deg, #cfd7c5 0%, #b4c0a4 100%);
   z-index: 1;
+  filter: drop-shadow(-2px 0 5px rgba(70,85,55,.18));
+}
+/* Solapa inferior (sobre las laterales) */
+.env-tri--bottom {
+  clip-path: polygon(0 100%, 100% 100%, 50% 47%);
+  background: linear-gradient(0deg, #bcc7ac 0%, #d3dac8 100%);
+  z-index: 2;
+  filter: drop-shadow(0 -3px 7px rgba(70,85,55,.2));
+}
+/* Solapa superior sellada (encima de todo) */
+.env-tri--top {
+  clip-path: polygon(0 0, 100% 0, 50% 53%);
+  background: linear-gradient(180deg, #dbe1d0 0%, #c6d0b9 100%);
+  transform-origin: 50% 0;
+  transition: transform .7s cubic-bezier(.6,0,.3,1);
+  z-index: 4;
+  filter: drop-shadow(0 5px 12px rgba(70,85,55,.28));
 }
 
 /* Nombres en la solapa superior */
@@ -159,26 +165,48 @@ img { max-width: 100%; display: block; }
 }
 .env-seal__initials {
   font-family: var(--font-script);
-  font-size: 58px;
-  fill: #7a591e;
-  opacity: .85;
+  font-size: 46px;
+  fill: #6f4e16;
+  opacity: .8;
 }
 
-/* Texto de instrucción */
+/* Texto de instrucción + botón */
 .env-hint {
-  position: absolute; left: 0; right: 0; bottom: 11%;
+  position: absolute; left: 0; right: 0; bottom: 9%;
   text-align: center; z-index: 6;
-  font-family: var(--font-heading); color: #7a5f34;
-  font-size: clamp(15px, 4vw, 18px); line-height: 1.7;
 }
-.env-hint strong {
-  color: var(--color-primary); font-weight: 600;
-  animation: envHintPulse 1.8s ease-in-out infinite;
-  display: inline-block;
+.env-hint__text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #566149;
+  font-size: clamp(17px, 4.6vw, 21px);
+  margin-bottom: 16px;
 }
-@keyframes envHintPulse {
-  0%, 100% { opacity: .55; }
-  50% { opacity: 1; }
+.env-btn {
+  position: relative; display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 32px; border-radius: 50px;
+  font-family: var(--font-heading); font-weight: 600; font-size: clamp(14px, 3.8vw, 16px);
+  letter-spacing: .4px; color: #fff;
+  background: linear-gradient(135deg, #d9ac48 0%, #B97600 55%, #9a6100 100%);
+  box-shadow: 0 8px 22px rgba(150,110,20,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  overflow: hidden;
+  animation: envBtnFloat 2.6s ease-in-out infinite;
+}
+.env-btn__icon { flex-shrink: 0; }
+/* Destello que barre el botón */
+.env-btn::after {
+  content: ""; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: skewX(-18deg);
+  animation: envBtnShine 2.8s ease-in-out infinite;
+}
+@keyframes envBtnFloat {
+  0%, 100% { transform: translateY(0); box-shadow: 0 8px 22px rgba(150,110,20,.42), inset 0 1px 0 rgba(255,255,255,.35); }
+  50% { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(150,110,20,.5), inset 0 1px 0 rgba(255,255,255,.35); }
+}
+@keyframes envBtnShine {
+  0% { left: -60%; }
+  55%, 100% { left: 130%; }
 }
 
 /* Apertura: la solapa se abre y el sobre se desliza hacia arriba */
@@ -191,7 +219,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .env-hint strong { animation: none; }
+  .env-btn, .env-btn::after { animation: none; }
 }
 
 /* Pantalla de bienvenida */
