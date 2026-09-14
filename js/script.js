@@ -21,13 +21,18 @@ function enviarDatos(tipo, formEl) {
   }).then(r => r.ok).catch(() => false);
 }
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('is-hidden');
-  }, 1200);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
+
+  const bowIntro = document.getElementById('bowIntro');
+  function abrirMoño() {
+    if (bowIntro.classList.contains('is-opening')) return;
+    bowIntro.classList.add('is-opening');
+    setTimeout(() => bowIntro.classList.add('is-hidden'), 750);
+  }
+  bowIntro.addEventListener('click', abrirMoño);
+  bowIntro.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirMoño(); }
+  });
 
   const musicModal = document.getElementById('musicModal');
   const bgMusic = document.getElementById('bgMusic');

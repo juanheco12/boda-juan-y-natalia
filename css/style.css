@@ -87,21 +87,49 @@ a.addeventatc {
 a.addeventatc:hover { background: var(--color-primary-dark) !important; }
 .addeventatc_icon { display: none !important; }
 
-/* Loader inicial (corazón latiendo) */
-.loader {
+/* Moño de bienvenida */
+.bow-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity .6s ease;
+  background: linear-gradient(160deg, #fbf6ea, #f2e6cd);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity .5s ease;
 }
-.loader.is-hidden { opacity: 0; pointer-events: none; }
-.loader__heart { animation: heartbeat 1.1s ease-in-out infinite; }
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.18); }
-  40% { transform: scale(1); }
-  60% { transform: scale(1.12); }
+.bow-intro.is-hidden { opacity: 0; pointer-events: none; }
+
+.bow-intro__svg {
+  filter: drop-shadow(0 10px 24px rgba(120, 90, 40, .28));
+  animation: bowSway 3.5s ease-in-out infinite;
 }
+@keyframes bowSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.bow-parte { transform-box: fill-box; transform-origin: center; }
+
+.bow-intro__hint {
+  margin-top: 26px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #a9895a; animation: bowHintPulse 1.8s ease-in-out infinite;
+}
+@keyframes bowHintPulse {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+.bow-intro.is-opening .bow-intro__svg { animation: none; }
+.bow-intro.is-opening .bow-intro__hint { opacity: 0; transition: opacity .2s ease; }
+.bow-intro.is-opening #bowLoopLeft { animation: bowLoopLeftOpen .7s ease forwards; }
+.bow-intro.is-opening #bowLoopRight { animation: bowLoopRightOpen .7s ease forwards; }
+.bow-intro.is-opening #bowTailLeft { animation: bowTailLeftOpen .7s ease forwards; }
+.bow-intro.is-opening #bowTailRight { animation: bowTailRightOpen .7s ease forwards; }
+.bow-intro.is-opening #bowKnot { animation: bowKnotOpen .7s ease .05s forwards; }
+
+@keyframes bowLoopLeftOpen { to { transform: translate(-95px, -35px) rotate(-55deg); opacity: 0; } }
+@keyframes bowLoopRightOpen { to { transform: translate(95px, -35px) rotate(55deg); opacity: 0; } }
+@keyframes bowTailLeftOpen { to { transform: translate(-45px, 70px) rotate(-18deg); opacity: 0; } }
+@keyframes bowTailRightOpen { to { transform: translate(45px, 70px) rotate(18deg); opacity: 0; } }
+@keyframes bowKnotOpen { to { transform: scale(.25); opacity: 0; } }
 
 /* Pantalla de bienvenida */
 .music-modal {
