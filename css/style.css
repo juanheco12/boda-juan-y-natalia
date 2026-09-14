@@ -92,61 +92,57 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Moño de bienvenida (satín + regalo envuelto) */
+/* Portada del moño real (imagen fotográfica que se abre en dos) */
 .bow-intro {
   position: fixed; inset: 0; z-index: 500;
-  background:
-    radial-gradient(120% 90% at 50% 42%, #fbf4e6 0%, #f2e6cd 55%, #e7d6b4 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #efe4cd;
   cursor: pointer;
-  transition: opacity .9s ease, transform .9s ease;
+  overflow: hidden;
 }
-.bow-intro.is-hidden { opacity: 0; transform: scale(1.08); pointer-events: none; }
+.bow-intro.is-hidden { pointer-events: none; }
 
-/* Cintas que cruzan la pantalla (el "envuelto") */
-.bow-cross { position: absolute; inset: 0; overflow: hidden; }
-.bow-band { position: absolute; }
-.bow-band--v {
-  top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: clamp(52px, 15vw, 82px);
-  background: linear-gradient(90deg, #cbab6f 0%, #e8d3a8 20%, #fffaf0 50%, #e8d3a8 80%, #cbab6f 100%);
-  box-shadow: 0 0 26px rgba(150,115,55,.18);
+.bow-half {
+  position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden;
+  will-change: transform;
+  transition: transform 1.25s cubic-bezier(.76,0,.24,1);
+  box-shadow: 0 0 40px rgba(90,65,25,.15);
 }
-.bow-band--h {
-  left: 0; right: 0; top: 50%; transform: translateY(-50%);
-  height: clamp(52px, 15vw, 82px);
-  background: linear-gradient(180deg, #cbab6f 0%, #e8d3a8 20%, #fffaf0 50%, #e8d3a8 80%, #cbab6f 100%);
-  box-shadow: 0 0 26px rgba(150,115,55,.18);
+.bow-half img {
+  position: absolute; top: 0; height: 100%; width: 200%; max-width: none;
+  object-fit: cover; object-position: center;
 }
+.bow-half--left  { left: 0;  }
+.bow-half--left img  { left: 0;  }
+.bow-half--right { right: 0; }
+.bow-half--right img { right: 0; }
 
-/* El moño de satín */
-.bow-satin {
-  position: relative; z-index: 2;
-  filter: drop-shadow(0 12px 26px rgba(120, 88, 38, .32));
-  animation: bowBreath 6s ease-in-out infinite;
-}
-@keyframes bowBreath {
-  0%, 100% { transform: scale(1) rotate(-.6deg); }
-  50% { transform: scale(1.018) rotate(.6deg); }
+/* Costura central sutil donde se parte el moño */
+.bow-seam {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(120,90,40,.18), transparent);
+  z-index: 3; transition: opacity .4s ease;
 }
 
 .bow-intro__hint {
-  position: relative; z-index: 2;
-  margin-top: 34px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 2px;
-  text-transform: uppercase; color: #9a7c4c; animation: bowHintPulse 2s ease-in-out infinite;
+  position: absolute; left: 0; right: 0; bottom: 12%;
+  text-align: center; z-index: 4;
+  font-family: var(--font-heading); font-size: 13px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: #8a6d40;
+  text-shadow: 0 1px 3px rgba(255,250,240,.6);
+  animation: bowHintPulse 2s ease-in-out infinite;
 }
 @keyframes bowHintPulse {
-  0%, 100% { opacity: .4; }
+  0%, 100% { opacity: .45; }
   50% { opacity: 1; }
 }
 
-/* Apertura elegante: todo se detiene y se desvanece suavemente */
-.bow-intro.is-hidden .bow-satin { animation: none; }
-.bow-intro.is-hidden .bow-intro__hint { animation: none; opacity: 0; }
-
-@media (prefers-reduced-motion: reduce) {
-  .bow-satin, .bow-intro__hint { animation: none; }
-}
+/* Apertura: las dos mitades se abren hacia los lados */
+.bow-intro.is-opening .bow-half--left  { transform: translateX(-100%); }
+.bow-intro.is-opening .bow-half--right { transform: translateX(100%); }
+.bow-intro.is-opening .bow-seam,
+.bow-intro.is-opening .bow-intro__hint { opacity: 0; animation: none; }
+.bow-intro.is-hidden { opacity: 0; transition: opacity .3s ease; }
 
 /* Pantalla de bienvenida */
 .music-modal {
