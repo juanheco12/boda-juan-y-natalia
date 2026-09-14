@@ -92,49 +92,61 @@ img { max-width: 100%; display: block; }
 }
 .agendar__opt:hover { background: var(--color-bg-soft); }
 
-/* Moño de bienvenida */
+/* Moño de bienvenida (satín + regalo envuelto) */
 .bow-intro {
   position: fixed; inset: 0; z-index: 500;
-  background: linear-gradient(160deg, #fbf6ea, #f2e6cd);
+  background:
+    radial-gradient(120% 90% at 50% 42%, #fbf4e6 0%, #f2e6cd 55%, #e7d6b4 100%);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   cursor: pointer;
-  transition: opacity .5s ease;
+  transition: opacity .9s ease, transform .9s ease;
 }
-.bow-intro.is-hidden { opacity: 0; pointer-events: none; }
+.bow-intro.is-hidden { opacity: 0; transform: scale(1.08); pointer-events: none; }
 
-.bow-intro__svg {
-  filter: drop-shadow(0 10px 24px rgba(120, 90, 40, .28));
-  animation: bowSway 3.5s ease-in-out infinite;
+/* Cintas que cruzan la pantalla (el "envuelto") */
+.bow-cross { position: absolute; inset: 0; overflow: hidden; }
+.bow-band { position: absolute; }
+.bow-band--v {
+  top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: clamp(52px, 15vw, 82px);
+  background: linear-gradient(90deg, #cbab6f 0%, #e8d3a8 20%, #fffaf0 50%, #e8d3a8 80%, #cbab6f 100%);
+  box-shadow: 0 0 26px rgba(150,115,55,.18);
 }
-@keyframes bowSway {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
+.bow-band--h {
+  left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  height: clamp(52px, 15vw, 82px);
+  background: linear-gradient(180deg, #cbab6f 0%, #e8d3a8 20%, #fffaf0 50%, #e8d3a8 80%, #cbab6f 100%);
+  box-shadow: 0 0 26px rgba(150,115,55,.18);
 }
 
-.bow-parte { transform-box: fill-box; transform-origin: center; }
+/* El moño de satín */
+.bow-satin {
+  position: relative; z-index: 2;
+  filter: drop-shadow(0 12px 26px rgba(120, 88, 38, .32));
+  animation: bowBreath 6s ease-in-out infinite;
+}
+@keyframes bowBreath {
+  0%, 100% { transform: scale(1) rotate(-.6deg); }
+  50% { transform: scale(1.018) rotate(.6deg); }
+}
 
 .bow-intro__hint {
-  margin-top: 26px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 1.5px;
-  text-transform: uppercase; color: #a9895a; animation: bowHintPulse 1.8s ease-in-out infinite;
+  position: relative; z-index: 2;
+  margin-top: 34px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 2px;
+  text-transform: uppercase; color: #9a7c4c; animation: bowHintPulse 2s ease-in-out infinite;
 }
 @keyframes bowHintPulse {
-  0%, 100% { opacity: .45; }
+  0%, 100% { opacity: .4; }
   50% { opacity: 1; }
 }
 
-.bow-intro.is-opening .bow-intro__svg { animation: none; }
-.bow-intro.is-opening .bow-intro__hint { opacity: 0; transition: opacity .2s ease; }
-.bow-intro.is-opening #bowLoopLeft { animation: bowLoopLeftOpen .7s ease forwards; }
-.bow-intro.is-opening #bowLoopRight { animation: bowLoopRightOpen .7s ease forwards; }
-.bow-intro.is-opening #bowTailLeft { animation: bowTailLeftOpen .7s ease forwards; }
-.bow-intro.is-opening #bowTailRight { animation: bowTailRightOpen .7s ease forwards; }
-.bow-intro.is-opening #bowKnot { animation: bowKnotOpen .7s ease .05s forwards; }
+/* Apertura elegante: todo se detiene y se desvanece suavemente */
+.bow-intro.is-hidden .bow-satin { animation: none; }
+.bow-intro.is-hidden .bow-intro__hint { animation: none; opacity: 0; }
 
-@keyframes bowLoopLeftOpen { to { transform: translate(-95px, -35px) rotate(-55deg); opacity: 0; } }
-@keyframes bowLoopRightOpen { to { transform: translate(95px, -35px) rotate(55deg); opacity: 0; } }
-@keyframes bowTailLeftOpen { to { transform: translate(-45px, 70px) rotate(-18deg); opacity: 0; } }
-@keyframes bowTailRightOpen { to { transform: translate(45px, 70px) rotate(18deg); opacity: 0; } }
-@keyframes bowKnotOpen { to { transform: scale(.25); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .bow-satin, .bow-intro__hint { animation: none; }
+}
 
 /* Pantalla de bienvenida */
 .music-modal {

@@ -11,32 +11,76 @@
 <body>
 
 <div class="bow-intro" id="bowIntro" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
-  <svg class="bow-intro__svg" viewBox="0 0 320 260" width="240" height="195" aria-hidden="true">
+  <div class="bow-cross" aria-hidden="true">
+    <span class="bow-band bow-band--v"></span>
+    <span class="bow-band bow-band--h"></span>
+  </div>
+
+  <svg class="bow-satin" viewBox="0 0 360 340" width="320" height="302" aria-hidden="true">
     <defs>
-      <linearGradient id="cintaGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#fffaf0"/>
-        <stop offset="55%" stop-color="#f1e0bd"/>
-        <stop offset="100%" stop-color="#d9b978"/>
+      <linearGradient id="loopL" x1="0" y1="0.15" x2="1" y2="0.85">
+        <stop offset="0" stop-color="#fffaf0"/>
+        <stop offset="0.38" stop-color="#f4e7cb"/>
+        <stop offset="0.72" stop-color="#e6d0a4"/>
+        <stop offset="1" stop-color="#cdac6d"/>
       </linearGradient>
+      <linearGradient id="loopR" x1="1" y1="0.15" x2="0" y2="0.85">
+        <stop offset="0" stop-color="#fffaf0"/>
+        <stop offset="0.38" stop-color="#f4e7cb"/>
+        <stop offset="0.72" stop-color="#e6d0a4"/>
+        <stop offset="1" stop-color="#cdac6d"/>
+      </linearGradient>
+      <linearGradient id="tailSatin" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#caa96a"/>
+        <stop offset="0.28" stop-color="#f2e4c6"/>
+        <stop offset="0.5" stop-color="#fffaf0"/>
+        <stop offset="0.72" stop-color="#f2e4c6"/>
+        <stop offset="1" stop-color="#caa96a"/>
+      </linearGradient>
+      <linearGradient id="knotSatin" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#bfa062"/>
+        <stop offset="0.5" stop-color="#f7ecd6"/>
+        <stop offset="1" stop-color="#bfa062"/>
+      </linearGradient>
+      <radialGradient id="sheen" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#fffdf8" stop-opacity="0.85"/>
+        <stop offset="0.6" stop-color="#fffdf8" stop-opacity="0.25"/>
+        <stop offset="1" stop-color="#fffdf8" stop-opacity="0"/>
+      </radialGradient>
     </defs>
-    <g id="bowTailLeft" class="bow-parte">
-      <path d="M140,150 L156,150 L152,242 L146,226 L140,242 Z" fill="url(#cintaGrad)" stroke="#bd9a5f" stroke-width="1.5"/>
+
+    <!-- Tails (detrás del nudo) -->
+    <g class="bow-satin__tails">
+      <path d="M176,168 C168,214 148,250 134,300 L150,285 L159,308 C176,254 184,214 187,172 Z"
+            fill="url(#tailSatin)" stroke="#bd9a5f" stroke-width="0.8" stroke-opacity="0.5"/>
+      <path d="M184,168 C192,214 212,250 226,300 L210,285 L201,308 C184,254 176,214 173,172 Z"
+            fill="url(#tailSatin)" stroke="#bd9a5f" stroke-width="0.8" stroke-opacity="0.5"/>
     </g>
-    <g id="bowTailRight" class="bow-parte">
-      <path d="M180,150 L164,150 L168,242 L174,226 L180,242 Z" fill="url(#cintaGrad)" stroke="#bd9a5f" stroke-width="1.5"/>
+
+    <!-- Lazo izquierdo -->
+    <g class="bow-satin__loop">
+      <path d="M180,150 C120,90 48,92 30,138 C22,152 24,162 34,172 C58,206 130,198 180,162 Z"
+            fill="url(#loopL)" stroke="#bd9a5f" stroke-width="0.8" stroke-opacity="0.45"/>
+      <ellipse cx="96" cy="128" rx="56" ry="22" transform="rotate(-15 96 128)" fill="url(#sheen)"/>
+      <path d="M180,151 C158,146 150,160 165,172 C166,160 172,153 180,161 Z" fill="#b5934f" fill-opacity="0.55"/>
     </g>
-    <g id="bowLoopLeft" class="bow-parte">
-      <path d="M160,132 C108,88 54,94 43,132 C54,170 108,176 160,146 Z" fill="url(#cintaGrad)" stroke="#bd9a5f" stroke-width="1.5"/>
-      <path d="M158,131 C128,117 92,119 68,129" fill="none" stroke="#bd9a5f" stroke-width="1.3" opacity=".55"/>
+
+    <!-- Lazo derecho -->
+    <g class="bow-satin__loop">
+      <path d="M180,150 C240,90 312,92 330,138 C338,152 336,162 326,172 C302,206 230,198 180,162 Z"
+            fill="url(#loopR)" stroke="#bd9a5f" stroke-width="0.8" stroke-opacity="0.45"/>
+      <ellipse cx="264" cy="128" rx="56" ry="22" transform="rotate(15 264 128)" fill="url(#sheen)"/>
+      <path d="M180,151 C202,146 210,160 195,172 C194,160 188,153 180,161 Z" fill="#b5934f" fill-opacity="0.55"/>
     </g>
-    <g id="bowLoopRight" class="bow-parte">
-      <path d="M160,132 C212,88 266,94 277,132 C266,170 212,176 160,146 Z" fill="url(#cintaGrad)" stroke="#bd9a5f" stroke-width="1.5"/>
-      <path d="M162,131 C192,117 228,119 252,129" fill="none" stroke="#bd9a5f" stroke-width="1.3" opacity=".55"/>
-    </g>
-    <g id="bowKnot" class="bow-parte">
-      <rect x="145" y="116" width="30" height="36" rx="11" fill="url(#cintaGrad)" stroke="#bd9a5f" stroke-width="1.5"/>
+
+    <!-- Nudo central -->
+    <g class="bow-satin__knot">
+      <rect x="164" y="140" width="32" height="38" rx="13" fill="url(#knotSatin)" stroke="#bd9a5f" stroke-width="0.8" stroke-opacity="0.5"/>
+      <path d="M172,142 C170,155 170,163 172,176" fill="none" stroke="#b5934f" stroke-width="1" stroke-opacity="0.4"/>
+      <path d="M188,142 C190,155 190,163 188,176" fill="none" stroke="#b5934f" stroke-width="1" stroke-opacity="0.4"/>
     </g>
   </svg>
+
   <p class="bow-intro__hint">Toca para abrir</p>
 </div>
 

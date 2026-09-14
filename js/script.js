@@ -25,9 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bowIntro = document.getElementById('bowIntro');
   function abrirMoño() {
-    if (bowIntro.classList.contains('is-opening')) return;
-    bowIntro.classList.add('is-opening');
-    setTimeout(() => bowIntro.classList.add('is-hidden'), 750);
+    if (bowIntro.classList.contains('is-hidden')) return;
+    bowIntro.classList.add('is-hidden');
   }
   bowIntro.addEventListener('click', abrirMoño);
   bowIntro.addEventListener('keydown', e => {
