@@ -21,18 +21,14 @@ function enviarDatos(tipo, formEl) {
   }).then(r => r.ok).catch(() => false);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('is-hidden');
+  }, 1200);
+});
 
-  const envIntro = document.getElementById('envIntro');
-  function abrirSobre() {
-    if (envIntro.classList.contains('is-opening')) return;
-    envIntro.classList.add('is-opening');
-    setTimeout(() => envIntro.classList.add('is-hidden'), 1850);
-  }
-  envIntro.addEventListener('click', abrirSobre);
-  envIntro.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirSobre(); }
-  });
+document.addEventListener('DOMContentLoaded', () => {
 
   const musicModal = document.getElementById('musicModal');
   const bgMusic = document.getElementById('bgMusic');

@@ -10,75 +10,10 @@
 </head>
 <body>
 
-<div class="env-intro" id="envIntro" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
-  <div class="env" aria-hidden="true">
-    <!-- Carta que sale del sobre -->
-    <div class="env-letter">
-      <div class="env-letter__deco"></div>
-      <p class="env-letter__eyebrow">¡Nos casamos!</p>
-      <p class="env-letter__names">Juan &amp; Natalia</p>
-      <span class="env-letter__date">17 · 10 · 2026</span>
-    </div>
-
-    <!-- Parte trasera del sobre -->
-    <div class="env-back"></div>
-    <!-- Solapas laterales (tapan las esquinas sobre la carta) -->
-    <div class="env-side env-side--left"></div>
-    <div class="env-side env-side--right"></div>
-    <!-- Frente / bolsillo del sobre -->
-    <div class="env-front"></div>
-
-    <!-- Solapa superior con nombres -->
-    <div class="env-flap">
-      <div class="env-flap__names">
-        <span>Juan</span><span class="env-amp">&amp;</span><span>Natalia</span>
-      </div>
-    </div>
-
-    <!-- Sello de cera -->
-    <svg class="env-seal" viewBox="0 0 200 200">
-      <defs>
-        <radialGradient id="waxGold" cx="0.38" cy="0.32" r="0.75">
-          <stop offset="0" stop-color="#c25a70"/>
-          <stop offset="0.35" stop-color="#9c3348"/>
-          <stop offset="0.7" stop-color="#7a2237"/>
-          <stop offset="1" stop-color="#571626"/>
-        </radialGradient>
-        <radialGradient id="waxInner" cx="0.4" cy="0.35" r="0.8">
-          <stop offset="0" stop-color="#b34a60"/>
-          <stop offset="0.6" stop-color="#8a2c42"/>
-          <stop offset="1" stop-color="#641d2e"/>
-        </radialGradient>
-        <filter id="waxEdge" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="9" result="n"/>
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="9"/>
-        </filter>
-      </defs>
-      <g filter="url(#waxEdge)">
-        <circle cx="100" cy="100" r="86" fill="url(#waxGold)"/>
-        <circle cx="100" cy="100" r="86" fill="none" stroke="#3f0f1c" stroke-opacity="0.4" stroke-width="3"/>
-      </g>
-      <circle cx="100" cy="100" r="68" fill="url(#waxInner)" stroke="#4a1420" stroke-opacity="0.45" stroke-width="2"/>
-      <circle cx="100" cy="100" r="68" fill="none" stroke="#f4e3b0" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="2 5"/>
-      <text x="100" y="86" class="env-seal__initials" text-anchor="middle" dominant-baseline="central">J&amp;N</text>
-      <g fill="#e6cd8a" fill-opacity="0.85" stroke="#e6cd8a" stroke-opacity="0.85">
-        <g transform="translate(100 132)">
-          <path d="M0,0 Q-13,-4 -22,-16" fill="none" stroke-width="1.4"/>
-          <ellipse cx="-5" cy="-2" rx="4.3" ry="2" transform="rotate(30 -5 -2)" stroke="none"/>
-          <ellipse cx="-12" cy="-7" rx="4.3" ry="2" transform="rotate(42 -12 -7)" stroke="none"/>
-          <ellipse cx="-19" cy="-15" rx="3.8" ry="1.8" transform="rotate(54 -19 -15)" stroke="none"/>
-        </g>
-        <g transform="translate(100 132) scale(-1,1)">
-          <path d="M0,0 Q-13,-4 -22,-16" fill="none" stroke-width="1.4"/>
-          <ellipse cx="-5" cy="-2" rx="4.3" ry="2" transform="rotate(30 -5 -2)" stroke="none"/>
-          <ellipse cx="-12" cy="-7" rx="4.3" ry="2" transform="rotate(42 -12 -7)" stroke="none"/>
-          <ellipse cx="-19" cy="-15" rx="3.8" ry="1.8" transform="rotate(54 -19 -15)" stroke="none"/>
-        </g>
-      </g>
-    </svg>
-  </div>
-
-  <p class="env-hint" id="envHint">Toca el sobre para abrir</p>
+<div class="loader" id="loader">
+  <svg class="loader__heart" viewBox="0 0 24 24" width="72" height="72" aria-hidden="true">
+    <path fill="#B97600" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
 </div>
 
 <div class="music-modal" id="musicModal">
