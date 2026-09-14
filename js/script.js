@@ -99,6 +99,78 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
   });
 
+  // Desplegable "Agendar" en Ceremonia y Fiesta (Apple/Google/Office365/Outlook/Outlook.com/Yahoo)
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function aUTC(date) {
+    return date.getUTCFullYear() + pad(date.getUTCMonth() + 1) + pad(date.getUTCDate()) + 'T' +
+      pad(date.getUTCHours()) + pad(date.getUTCMinutes()) + pad(date.getUTCSeconds()) + 'Z';
+  }
+  function construirIcs({ title, start, end, location, desc }) {
+    const escapar = s => String(s || '').replace(/,/g, '\\,').replace(/;/g, '\\;');
+    return [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Juan y Natalia//Boda//ES', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:' + Date.now() + '@juanynatalia',
+      'DTSTAMP:' + aUTC(new Date()),
+      'DTSTART:' + aUTC(start),
+      'DTEND:' + aUTC(end),
+      'SUMMARY:' + escapar(title),
+      'DESCRIPTION:' + escapar(desc),
+      'LOCATION:' + escapar(location),
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+  }
+  document.querySelectorAll('.agendar').forEach(box => {
+    const title = box.dataset.title;
+    const start = new Date(box.dataset.start);
+    const end = new Date(box.dataset.end);
+    const location = box.dataset.location;
+    const desc = box.dataset.desc || '';
+    const s = aUTC(start), e = aUTC(end);
+
+    const google = box.querySelector('[data-provider="google"]');
+    if (google) google.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${s}/${e}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(location)}`;
+
+    const yahoo = box.querySelector('[data-provider="yahoo"]');
+    if (yahoo) yahoo.href = `https://calendar.yahoo.com/?v=60&view=d&type=20&title=${encodeURIComponent(title)}&st=${s}&et=${e}&desc=${encodeURIComponent(desc)}&in_loc=${encodeURIComponent(location)}`;
+
+    const office365 = box.querySelector('[data-provider="office365"]');
+    if (office365) office365.href = `https://outlook.office.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=${encodeURIComponent(title)}&startdt=${start.toISOString()}&enddt=${end.toISOString()}&location=${encodeURIComponent(location)}&body=${encodeURIComponent(desc)}`;
+
+    const outlookcom = box.querySelector('[data-provider="outlookcom"]');
+    if (outlookcom) outlookcom.href = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=${encodeURIComponent(title)}&startdt=${start.toISOString()}&enddt=${end.toISOString()}&location=${encodeURIComponent(location)}&body=${encodeURIComponent(desc)}`;
+
+    box.querySelectorAll('[data-provider="ics"]').forEach(icsEl => {
+      icsEl.addEventListener('click', ev => {
+        ev.preventDefault();
+        const blob = new Blob([construirIcs({ title, start, end, location, desc })], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'evento-boda.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        box.classList.remove('is-open');
+      });
+    });
+
+    box.querySelectorAll('.agendar__opt:not([data-provider="ics"])').forEach(opt => {
+      opt.addEventListener('click', () => box.classList.remove('is-open'));
+    });
+
+    box.querySelector('.agendar__btn').addEventListener('click', () => {
+      document.querySelectorAll('.agendar.is-open').forEach(otro => { if (otro !== box) otro.classList.remove('is-open'); });
+      box.classList.toggle('is-open');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.agendar')) {
+      document.querySelectorAll('.agendar.is-open').forEach(b => b.classList.remove('is-open'));
+    }
+  });
+
   document.getElementById('openCancion').addEventListener('click', () => openModal('cancionModal'));
   document.getElementById('openRegalos').addEventListener('click', () => openModal('regalosModal'));
 
