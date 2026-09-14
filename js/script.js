@@ -283,4 +283,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('is-open'); });
 
+  // Animaciones al hacer scroll (aparecer suavemente al bajar)
+  const revealEls = document.querySelectorAll([
+    '.countdown__label', '.countdown__grid',
+    '.invitados__badge', '.invitados__title', '.invitados__acompanantes', '.invitados__list', '.invitados__msg',
+    '.detalle',
+    '#rsvp .section-title', '#rsvp .section-sub', '#rsvp .btn',
+    '.galeria .section-title', '.galeria .section-sub', '.galeria__item',
+    '#fiesta-info .section-title', '#fiesta-info .section-sub', '.info-card',
+    '#regalos .section-title', '#regalos .section-sub', '#regalos .btn',
+    '.social .section-title', '.social .section-sub', '.social__hashtag', '.social__profiles',
+    '.footer'
+  ].join(','));
+
+  if ('IntersectionObserver' in window) {
+    revealEls.forEach(el => el.classList.add('reveal'));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => obs.observe(el));
+  }
+
 });

@@ -116,7 +116,7 @@
       <h4 class="detalle__label">Día</h4>
       <p class="detalle__info">Sábado 17 de Octubre - 20hs</p>
       <div class="agendar" data-title="Fiesta Juan y Natalia" data-start="2026-10-17T20:00:00-05:00"
-           data-end="2026-10-18T02:00:00-05:00" data-location="8.67299851,-75.80539799" data-desc="Fiesta de la boda de Juan y Natalia">
+           data-end="2026-10-18T02:00:00-05:00" data-location="Córdova Restaurante, Variante Montería-Cereté, Montería" data-desc="Fiesta de la boda de Juan y Natalia">
         <button type="button" class="btn btn--primary btn--sm agendar__btn">Agendar</button>
         <div class="agendar__menu">
           <a href="#" class="agendar__opt" data-provider="ics">Apple Calendar</a>
@@ -128,7 +128,7 @@
         </div>
       </div>
       <h4 class="detalle__label">Lugar</h4>
-      <p class="detalle__info">Lugar de la Fiesta</p>
+      <p class="detalle__info">Córdova Restaurante<br>Variante Montería - Cereté, Montería</p>
       <button class="btn btn--primary btn--sm js-open-modal" data-modal="mapaFiestaModal">¿Cómo llegar?</button>
     </div>
 
@@ -291,9 +291,9 @@
     <h3>Cómo llegar a la Fiesta</h3>
     <iframe class="mapa-iframe" width="100%" height="400" style="border:0" loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=8.67299851,-75.80539799&output=embed"></iframe>
+      src="https://www.google.com/maps?q=8.7761455,-75.8473817&output=embed"></iframe>
     <a class="btn btn--primary btn--sm mapa-ampliar" target="_blank"
-       href="https://www.google.com/maps/search/?api=1&query=8.67299851,-75.80539799">Ampliar mapa</a>
+       href="https://www.google.com/maps/search/?api=1&query=8.7761455,-75.8473817">Ampliar mapa</a>
   </div>
 </div>
 
@@ -301,7 +301,19 @@
   <div class="modal__box">
     <button class="modal__close js-close-modal">&times;</button>
     <h3>Dress Code</h3>
-    <p>Describe aquí el código de vestimenta para tu evento (ej: Formal / Elegante Sport). Evitar blanco (reservado para la novia).</p>
+    <p class="modal-lead">Queremos verte espectacular. El código es <strong>Elegante</strong> ✨</p>
+    <div class="dc-grid">
+      <div class="dc-item">
+        <span class="dc-item__label">Ellos</span>
+        <p>Traje o guayabera elegante</p>
+      </div>
+      <div class="dc-item">
+        <span class="dc-item__label">Ellas</span>
+        <p>Vestido largo o de cóctel</p>
+      </div>
+    </div>
+    <p class="modal-note">🎨 Colores reservados para los novios: <strong>blanco, marfil y beige</strong>. ¡El resto de la paleta es toda tuya!</p>
+    <p class="modal-tip">Montería es cálida y la fiesta va hasta tarde: elige telas fresquitas y zapatos con los que puedas bailar toda la noche 💃🕺</p>
   </div>
 </div>
 
@@ -309,29 +321,45 @@
   <div class="modal__box">
     <button class="modal__close js-close-modal">&times;</button>
     <h3>Tips y Notas</h3>
-    <p>Agrega aquí notas útiles: parking, clima, alojamiento recomendado, transporte, etc.</p>
+    <ul class="tips-list">
+      <li><span>🕔</span><p><strong>Llega a tiempo.</strong> La ceremonia empieza puntual a las 5:00 p.m.</p></li>
+      <li><span>☀️</span><p><strong>Clima de Montería.</strong> Hará calorcito; ven fresco y con buena energía.</p></li>
+      <li><span>🎶</span><p><strong>La fiesta va con todo.</strong> Música, baile y sorpresas hasta la madrugada.</p></li>
+      <li><span>🅿️</span><p><strong>Parqueadero.</strong> Córdova Restaurante cuenta con zona para dejar el carro.</p></li>
+      <li><span>📸</span><p><strong>Vive el momento.</strong> Durante la ceremonia disfruta; deja las fotos a los profesionales y luego comparte las tuyas con nuestro hashtag.</p></li>
+      <li><span>✅</span><p><strong>Confirma tu asistencia.</strong> Así reservamos tu lugar en la celebración.</p></li>
+    </ul>
   </div>
 </div>
 
 <section id="regalos" class="regalos">
   <h2 class="section-title">Regalos</h2>
   <p class="section-sub">Si deseas regalarnos algo más que tu hermosa presencia...</p>
-  <button class="btn btn--primary" id="openRegalos">Cuenta Bancaria - Lista de Regalos</button>
+  <button class="btn btn--primary" id="openRegalos">Lluvia de Sobres 💌</button>
 </section>
 
 <div class="modal" id="regalosModal">
   <div class="modal__box">
     <button class="modal__close js-close-modal">&times;</button>
     <h3>Regalos</h3>
-    <p>Agrega aquí los datos de tu cuenta bancaria o el link a tu lista de regalos.</p>
+    <p class="modal-lead">Tu presencia es nuestro mejor regalo 💛</p>
+    <p>Pero si quieres consentirnos, nos encanta la tradición de la <strong>Lluvia de Sobres</strong>: puedes entregarnos tu detalle el día de la boda, o adelantarlo aquí:</p>
+    <div class="gift-box">
+      <span class="gift-box__label">Nequi / Cuenta</span>
+      <p class="gift-box__data">Próximamente</p>
+    </div>
+    <p class="modal-tip">Gracias por hacer parte del comienzo de nuestra historia ✨</p>
   </div>
 </div>
 
 <section class="social">
   <h2 class="section-title">Compartimos este día junto a vos</h2>
-  <p class="section-sub">Compartí tus fotos y videos de ese hermoso día</p>
-  <p class="social__hashtag">#juanynatalia</p>
-  <a class="btn btn--primary" href="https://www.instagram.com/" target="_blank">Ver en Instagram</a>
+  <p class="section-sub">Comparte tus fotos y videos con nuestro hashtag, y síguenos</p>
+  <p class="social__hashtag">#JuanYNatalia</p>
+  <div class="social__profiles">
+    <a class="btn btn--primary" href="https://www.instagram.com/juanheco" target="_blank" rel="noopener">Instagram de Juan</a>
+    <a class="btn btn--outline" href="https://www.instagram.com/nataliarincon2012" target="_blank" rel="noopener">Instagram de Natalia</a>
+  </div>
 </section>
 
 <footer class="footer">
