@@ -13,6 +13,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
+/* Mientras se muestra la bienvenida, no se puede desplazar la página */
+html.intro-lock, html.intro-lock body { overflow: hidden; height: 100%; }
 
 body {
   font-family: var(--font-body);

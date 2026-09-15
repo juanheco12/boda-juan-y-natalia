@@ -21,7 +21,13 @@ function enviarDatos(tipo, formEl) {
   }).then(r => r.ok).catch(() => false);
 }
 
+// Empezar siempre desde el inicio (evitar que el navegador restaure el scroll)
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+document.documentElement.classList.add('intro-lock');
+window.scrollTo(0, 0);
+
 window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
   setTimeout(() => {
     const loader = document.getElementById('loader');
     if (loader) loader.classList.add('is-hidden');
@@ -42,13 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
     musicFab.classList.remove('is-playing');
   }
 
+  function entrar() {
+    window.scrollTo(0, 0);
+    musicModal.classList.add('is-hidden');
+    document.documentElement.classList.remove('intro-lock');
+  }
   document.getElementById('enterWithMusic').addEventListener('click', () => {
     playMusic();
-    musicModal.classList.add('is-hidden');
+    entrar();
   });
-  document.getElementById('enterWithoutMusic').addEventListener('click', () => {
-    musicModal.classList.add('is-hidden');
-  });
+  document.getElementById('enterWithoutMusic').addEventListener('click', entrar);
   musicFab.addEventListener('click', () => {
     if (bgMusic.paused) playMusic(); else pauseMusic();
   });
