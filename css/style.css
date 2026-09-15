@@ -346,6 +346,17 @@ img { max-width: 100%; display: block; }
 }
 .gift-box__data { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-primary); }
 
+/* QR de regalo */
+.gift-qr { text-align: center; margin: 18px 0 14px; }
+.gift-qr__img {
+  width: 220px; max-width: 78%; margin: 0 auto 12px;
+  border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.1);
+}
+.gift-qr__key {
+  font-family: var(--font-heading); font-size: 15px; color: var(--color-text); line-height: 1.5;
+}
+.gift-qr__key strong { color: var(--color-primary); font-size: 18px; letter-spacing: 1px; }
+
 /* Perfiles de Instagram */
 .social__profiles { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 
